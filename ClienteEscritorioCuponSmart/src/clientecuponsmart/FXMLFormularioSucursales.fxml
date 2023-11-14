@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="924.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLFormularioSucursalesController">
+    <children>
+      <TextField fx:id="tfNombre" layoutX="34.0" layoutY="116.0" promptText="Nombre de la Sucursal" />
+      <TextField fx:id="tfDireccion" layoutX="369.0" layoutY="116.0" promptText="Dirección" />
+      <TextField fx:id="tfCodigoPostal" layoutX="654.0" layoutY="116.0" promptText="Código Postal" />
+      <TextField fx:id="tfColonia" layoutX="34.0" layoutY="200.0" promptText="Colonia" />
+      <TextField fx:id="tfCiudad" layoutX="369.0" layoutY="200.0" promptText="Ciudad" />
+      <TextField fx:id="tfTelefono" layoutX="654.0" layoutY="200.0" promptText="Teléfono" />
+      <TextField fx:id="tfLatitud" layoutX="34.0" layoutY="284.0" promptText="Latitud" />
+      <TextField fx:id="tfLongitud" layoutX="369.0" layoutY="284.0" promptText="Longitud" />
+      <TextField fx:id="tfEncargado" layoutX="654.0" layoutY="284.0" promptText="Nombre del Encargado" />
+      <Button layoutX="756.0" layoutY="551.0" mnemonicParsing="false" onAction="" prefHeight="48.0" prefWidth="108.0" text="Finalizar" />
+      <Label layoutX="34.0" layoutY="26.0" text="Formulario Sucursales:" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="363.0" layoutY="449.0" mnemonicParsing="false" text="Cargar Imagen" />
+      <Button layoutX="363.0" layoutY="520.0" mnemonicParsing="false" text="Guardar Imagen" />
+    </children>
+</AnchorPane>

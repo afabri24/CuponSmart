@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="705.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponsmart.FXMLCuponesController">
+   <children>
+      <TableView fx:id="tvCupones" layoutX="17.0" layoutY="183.0" prefHeight="523.0" prefWidth="976.0">
+        <columns>
+          <TableColumn fx:id="colPromocion" prefWidth="402.0" text="Promoción" />
+          <TableColumn fx:id="colUsuario" prefWidth="320.0" text="Fecha de expiracion" />
+        </columns>
+      </TableView>
+      <Pane layoutY="-2.0" prefHeight="71.0" prefWidth="1013.0" style="-fx-background-color: green;">
+         <children>
+            <Label layoutX="14.0" layoutY="25.0" text="Gestión de Cupones" textFill="WHITE" />
+         </children>
+      </Pane>
+      <TextField fx:id="tfBuscarCupones" layoutX="17.0" layoutY="116.0" promptText="Buscar Cupones" />
+      <Button layoutX="309.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnCanjearCupon" prefHeight="31.0" prefWidth="196.0" text="Canjear Cupón" />
+      <Button layoutX="625.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnDetallesCupon" prefHeight="31.0" prefWidth="117.0" text="Detalles" />
+   </children>
+</AnchorPane>

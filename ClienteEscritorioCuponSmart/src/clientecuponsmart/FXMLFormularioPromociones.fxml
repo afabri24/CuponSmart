@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientecuponsmart.FXMLFormularioPromocionesController">
+    <children>
+      <TextField fx:id="tfNombrePromocion" layoutX="34.0" layoutY="116.0" promptText="Nombre de la Promoción" />
+      <TextField fx:id="tfDescripcion" layoutX="369.0" layoutY="116.0" promptText="Descripción" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="34.0" layoutY="200.0" promptText="Fecha de Inicio" />
+      <DatePicker fx:id="dpFechaFin" layoutX="369.0" layoutY="200.0" promptText="Fecha de Término" />
+      <ComboBox fx:id="cbTipoPromocion" layoutX="654.0" layoutY="200.0" promptText="Tipo de Promoción" />
+      <TextField fx:id="tfPorcentajeDescuento" layoutX="34.0" layoutY="284.0" promptText="Porcentaje de Descuento" />
+      <TextField fx:id="tfCostoRebajado" layoutX="369.0" layoutY="284.0" promptText="Costo Rebajado" />
+      <ComboBox fx:id="cbCategoria" layoutX="654.0" layoutY="284.0" promptText="Categoría" />
+      <TextField fx:id="tfCuponesMaximos" layoutX="34.0" layoutY="368.0" promptText="Cupones Máximos" />
+      <TextField fx:id="tfCodigoPromocion" layoutX="369.0" layoutY="368.0" promptText="Código de Promoción" />
+      <ComboBox fx:id="cbEmpresa" layoutX="654.0" layoutY="368.0" promptText="Empresa" />
+      <Button layoutX="756.0" layoutY="551.0" mnemonicParsing="false" onAction="" prefHeight="48.0" prefWidth="108.0" text="Finalizar" />
+      <Label layoutX="34.0" layoutY="26.0" text="Formulario Promociones:" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="43.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="369.0" layoutY="449.0" mnemonicParsing="false" text="Cargar imagen" />
+      <Button layoutX="369.0" layoutY="520.0" mnemonicParsing="false" text="Guardar imagen" />
+    </children>
+</AnchorPane>
