@@ -13,10 +13,10 @@
         android:theme="@style/Theme.CuponSmart"
         tools:targetApi="31">
         <activity
-            android:name=".Registro"
+            android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".InicioSesion"
+            android:name=".InicioSesionActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
