@@ -1,11 +1,19 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modelo.pojo;
 
+/**
+ *
+ * @author ferna
+ */
 public class Empresas {
     private int idEmpresa;
     private String nombre;
     private String nombreComercial;
-    private byte[] logo;
+    private byte[] logo; // Se asume que longblob se representa como un array de bytes
     private String representanteLegal;
     private String email;
     private String telefono;
@@ -13,6 +21,9 @@ public class Empresas {
     private String RFC;
     private int estatus;
     private int idDireccion;
+
+    public Empresas() {
+    }
 
     public Empresas(int idEmpresa, String nombre, String nombreComercial, byte[] logo, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus, int idDireccion) {
         this.idEmpresa = idEmpresa;
@@ -26,9 +37,6 @@ public class Empresas {
         this.RFC = RFC;
         this.estatus = estatus;
         this.idDireccion = idDireccion;
-    }
-
-    public Empresas() {
     }
 
     public int getIdEmpresa() {

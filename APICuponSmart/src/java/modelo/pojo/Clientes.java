@@ -5,9 +5,11 @@
  */
 package modelo.pojo;
 
+import java.sql.Date;
+
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Clientes {
     private int idCliente;
@@ -16,11 +18,14 @@ public class Clientes {
     private String apellidoMaterno;
     private String telefono;
     private String correoElectronico;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private String contrasenia;
     private int idDireccion;
 
-    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, int idDireccion) {
+    public Clientes() {
+    }
+
+    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, Date fechaNacimiento, String contrasenia, int idDireccion) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -30,9 +35,6 @@ public class Clientes {
         this.fechaNacimiento = fechaNacimiento;
         this.contrasenia = contrasenia;
         this.idDireccion = idDireccion;
-    }
-
-    public Clientes() {
     }
 
     public int getIdCliente() {
@@ -83,11 +85,11 @@ public class Clientes {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

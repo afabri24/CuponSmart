@@ -7,20 +7,21 @@ package modelo.pojo;
 
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Cupones {
-    private int idCupon;
-    private int numeroCuponesDisponibles;
-    private int idPromocion;
 
-    public Cupones(int idCupon, int numeroCuponesDisponibles, int idPromocion) {
-        this.idCupon = idCupon;
-        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
-        this.idPromocion = idPromocion;
-    }
+    private int idCupon;
+    private int idPromocion;
+    private Integer numeroCuponesDisponibles;
 
     public Cupones() {
+    }
+
+    public Cupones(int idCupon, int idPromocion, Integer numeroCuponesDisponibles) {
+        this.idCupon = idCupon;
+        this.idPromocion = idPromocion;
+        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
     }
 
     public int getIdCupon() {
@@ -31,20 +32,20 @@ public class Cupones {
         this.idCupon = idCupon;
     }
 
-    public int getNumeroCuponesDisponibles() {
-        return numeroCuponesDisponibles;
-    }
-
-    public void setNumeroCuponesDisponibles(int numeroCuponesDisponibles) {
-        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
-    }
-
     public int getIdPromocion() {
         return idPromocion;
     }
 
     public void setIdPromocion(int idPromocion) {
         this.idPromocion = idPromocion;
+    }
+
+    public Integer getNumeroCuponesDisponibles() {
+        return numeroCuponesDisponibles;
+    }
+
+    public void setNumeroCuponesDisponibles(Integer numeroCuponesDisponibles) {
+        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
     }
     
     

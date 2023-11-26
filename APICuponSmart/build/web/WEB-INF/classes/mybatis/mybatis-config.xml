@@ -16,9 +16,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
                 <property name="url" value="jdbc:mysql://localhost:3306/cuponsmart?serverTimezone=UTC"/>   
 
-                <property name="username" value="adminCuponSmart"/>    
+                <property name="username" value="root"/>    
 
-                <property name="password" value="spiderman2442"/>
+                <property name="password" value="159751"/>
 
                 <property name="poolMaximumActiveConnections" value="50"/>
 
@@ -29,10 +29,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
     <mappers>
 
-        <!--<mapper resource="mybatis/mapper/AutentificacionMapper.xml"/>
-        <mapper resource="mybatis/mapper/PacienteMapper.xml"/>
-        <mapper resource="mybatis/mapper/DomicilioMapper.xml"/>
-        <mapper resource="mybatis/mapper/CatalogoMapper.xml"/>-->
+        <mapper resource="mybatis/mapper/AutentificacionMapper.xml"/>
+        <mapper resource="mybatis/mapper/EmpresaMapper.xml"/>
+        <mapper resource="mybatis/mapper/UsuariosMapper.xml"/>
+      
 
     </mappers>
 

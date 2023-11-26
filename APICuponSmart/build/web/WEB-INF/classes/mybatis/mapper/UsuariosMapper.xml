@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="usuarios">
+    <insert id="registrarUsuario" parameterType="modelo.pojo.Usuarios">
+        INSERT INTO usuarios 
+        (nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, contrasenia, rol, idEmpresa) 
+        VALUES 
+        (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{CURP}, #{correoElectronico}, #{username}, #{contrasenia}, #{rol}, #{idEmpresa})
+    </insert>
+    <update id="editarUsuario" parameterType="modelo.pojo.Usuarios">
+        UPDATE usuarios
+        SET
+        nombre=#{nombre}, apellidoPaterno=#{apellidoPaterno}, apellidoMaterno=#{apellidoMaterno},
+        CURP=#{CURP}, correoElectronico=#{correoElectronico}, username=#{username}, contrasenia=#{contrasenia},
+        rol=#{rol}, idEmpresa=#{idEmpresa}
+        WHERE idUsuario=#{idUsuario}
+    </update>
+
+    <delete id="eliminarUsuario" parameterType="int">
+        DELETE FROM usuarios
+        WHERE idUsuario=#{idUsuario}
+    </delete>
+
+
+    <select id="mostrarUsuarioPorCorreo" resultType="modelo.pojo.Usuarios" parameterType="String">
+        SELECT * 
+        FROM usuarios 
+        WHERE correoElectronico=#{correoElectronico}
+    </select>
+
+
+    <select id="mostrarUsuarioPorId" resultType="modelo.pojo.Usuarios" parameterType="int">
+        SELECT * 
+        FROM usuarios 
+        WHERE idUsuario=#{idUsuario}
+    </select>
+
+
+    <update id="guardarFotoUsuario" parameterType="map">
+        UPDATE usuarios 
+        SET fotografia=#{foto} 
+        WHERE idUsuario=#{idUsuario}
+    </update>
+
+    <select id="obtenerFotoUsuario" parameterType="int" resultType="modelo.pojo.Usuarios">
+        SELECT idUsuario, nombre, apellidoPaterno, apellidoMaterno, TO_BASE64(fotografia) as 'fotografiaBase64' 
+        FROM usuarios 
+        WHERE idUsuario=#{idUsuario}
+    </select>
+
+
+</mapper>

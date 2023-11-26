@@ -5,28 +5,33 @@
  */
 package modelo.pojo;
 
+import java.util.Date;
+
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Promociones {
     private int idPromocion;
     private String nombre;
     private String descripcion;
-    private byte[] imagen;
-    private String fechaInicio;
-    private String fechaTermino;
+    private byte[] imagen; // Se utiliza byte[] para representar datos binarios como imágenes
+    private Date fechaInicio;
+    private Date fechaTermino;
     private String restricciones;
     private int tipoPromocion;
     private float valorPromocion;
     private String categoria;
-    private int cuponesMaximos;
+    private Integer cuponesMaximos; // Se utiliza Integer para permitir nulos
     private String codigoPromocion;
     private int estatus;
     private int idEmpresa;
     private int idSucursal;
 
-    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, int cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
+    public Promociones() {
+    }
+
+    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, Date fechaInicio, Date fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
         this.idPromocion = idPromocion;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -42,9 +47,6 @@ public class Promociones {
         this.estatus = estatus;
         this.idEmpresa = idEmpresa;
         this.idSucursal = idSucursal;
-    }
-
-    public Promociones() {
     }
 
     public int getIdPromocion() {
@@ -79,19 +81,19 @@ public class Promociones {
         this.imagen = imagen;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaTermino() {
+    public Date getFechaTermino() {
         return fechaTermino;
     }
 
-    public void setFechaTermino(String fechaTermino) {
+    public void setFechaTermino(Date fechaTermino) {
         this.fechaTermino = fechaTermino;
     }
 
@@ -127,11 +129,11 @@ public class Promociones {
         this.categoria = categoria;
     }
 
-    public int getCuponesMaximos() {
+    public Integer getCuponesMaximos() {
         return cuponesMaximos;
     }
 
-    public void setCuponesMaximos(int cuponesMaximos) {
+    public void setCuponesMaximos(Integer cuponesMaximos) {
         this.cuponesMaximos = cuponesMaximos;
     }
 
@@ -166,6 +168,6 @@ public class Promociones {
     public void setIdSucursal(int idSucursal) {
         this.idSucursal = idSucursal;
     }
-    
+
     
 }

@@ -7,7 +7,7 @@ package modelo.pojo;
 
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Sucursales {
     private int idSucursal;
@@ -19,6 +19,9 @@ public class Sucursales {
     private int idEmpresa;
     private int idDireccion;
 
+    public Sucursales() {
+    }
+
     public Sucursales(int idSucursal, String nombre, String telefono, float latitud, float longitud, String nombreEncargado, int idEmpresa, int idDireccion) {
         this.idSucursal = idSucursal;
         this.nombre = nombre;
@@ -28,9 +31,6 @@ public class Sucursales {
         this.nombreEncargado = nombreEncargado;
         this.idEmpresa = idEmpresa;
         this.idDireccion = idDireccion;
-    }
-
-    public Sucursales() {
     }
 
     public int getIdSucursal() {

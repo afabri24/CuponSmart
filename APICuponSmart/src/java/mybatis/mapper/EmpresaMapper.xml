@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="empresa">
+    <select id="mostrarEmpresaPorEmail" resultType="modelo.pojo.Empresas" parameterType="String">
+        SELECT * 
+        FROM empresas 
+        WHERE email=#{email}
+    </select>
+    <select id="mostrarEmpresaPorId" resultType="modelo.pojo.Empresas" parameterType="int">
+        SELECT * 
+        FROM empresas 
+        WHERE idPaciente=#{idPaciente}
+    </select>    
+    <insert id="registrarEmpresa" parameterType="modelo.pojo.Empresas">
+        INSERT INTO empresas 
+        (nombre, nombreComercial, logo, representanteLegal, email, telefono, paginaWeb, RFC, estatus, idDireccion) 
+        VALUES 
+        (#{nombre}, #{nombreComercial}, #{logo}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatus}, #{idDireccion})
+    </insert>
+
+    <update id="editar" parameterType="map">
+        UPDATE empresas SET 
+        nombre=#{nombre},apellidoPaterno=#{apellidoPaterno},fechaNacimiento=#{fechaNacimiento},sexo=#{sexo},peso=#{peso},estatura=#{estatura},tallaInicial=#{tallaInicial},telefono=#{telefono},contrasenia=#{contrasenia},medico=#{medico} 
+        WHERE idPaciente=#{idPaciente}
+    </update>
+    <delete id="eliminar" parameterType="int">
+        DELETE FROM empresas
+        WHERE idPaciente=#{idPacientes}
+    </delete>
+    
+    <update id="guardarFoto" parameterType="map">
+        UPDATE empresas 
+        SET fotografia=#{foto} 
+        WHERE idPaciente=#{idPaciente}
+    </update>
+    
+    <select id="obtenerFoto" parameterType="int" resultType="modelo.pojo.Empresas">
+        SELECT idPaciente,nombre,apellidoPaterno,ApellidoMaterno,TO_BASE64(fotografia) as 'fotografiaBase64' 
+        FROM empresas 
+        WHERE idPaciente=#{idPaciente}
+        
+    </select>
+    <update id="editarEmpresa" parameterType="modelo.pojo.Empresas">
+        UPDATE empresas SET 
+        nombre=#{nombre}, nombreComercial=#{nombreComercial}, logo=#{logo}, representanteLegal=#{representanteLegal}, 
+        email=#{email}, telefono=#{telefono}, paginaWeb=#{paginaWeb}, RFC=#{RFC}, estatus=#{estatus}, idDireccion=#{idDireccion} 
+        WHERE idEmpresa=#{idEmpresa}
+    </update>
+
+    <delete id="eliminarEmpresa" parameterType="int">
+        DELETE FROM empresas
+        WHERE idEmpresa=#{idEmpresa}
+    </delete>
+
+    <update id="guardarLogoEmpresa" parameterType="map">
+        UPDATE empresas 
+        SET logo=#{logo} 
+        WHERE idEmpresa=#{idEmpresa}
+    </update>
+
+    <select id="obtenerLogoEmpresa" parameterType="int" resultType="modelo.pojo.Empresas">
+        SELECT idEmpresa, nombre, nombreComercial, TO_BASE64(logo) as 'logoBase64' 
+        FROM empresas 
+        WHERE idEmpresa=#{idEmpresa}
+    </select>
+
+</mapper>
