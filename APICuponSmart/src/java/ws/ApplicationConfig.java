@@ -5,49 +5,33 @@
  */
 package ws;
 
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
-import javax.ws.rs.core.MediaType;
+import java.util.Set;
+import javax.ws.rs.core.Application;
 
 /**
- * REST Web Service
  *
- * @author afabri24
+ * @author ferna
  */
-@Path("api")
-public class ApplicationConfig {
+@javax.ws.rs.ApplicationPath("api")
+public class ApplicationConfig extends Application {
 
-    @Context
-    private UriInfo context;
-
-    /**
-     * Creates a new instance of ApplicationConfig
-     */
-    public ApplicationConfig() {
+    @Override
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> resources = new java.util.HashSet<>();
+        addRestResourceClasses(resources);
+        return resources;
     }
 
     /**
-     * Retrieves representation of an instance of ws.ApplicationConfig
-     * @return an instance of java.lang.String
+     * Do not modify addRestResourceClasses() method.
+     * It is automatically populated with
+     * all resources defined in the project.
+     * If required, comment out calling this method in getClasses().
      */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(ws.AutentificacionWS.class);
+        resources.add(ws.EmpresasWS.class);
+        resources.add(ws.UsuariosWS.class);
     }
-
-    /**
-     * PUT method for updating or creating an instance of ApplicationConfig
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+    
 }
