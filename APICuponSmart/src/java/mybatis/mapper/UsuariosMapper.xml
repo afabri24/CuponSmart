@@ -11,14 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{CURP}, #{correoElectronico}, #{username}, #{contrasenia}, #{rol}, #{idEmpresa})
     </insert>
     <update id="editarUsuario" parameterType="modelo.pojo.Usuarios">
-        UPDATE usuarios 
-        SET 
-        nombre=#{nombre}, apellidoPaterno=#{apellidoPaterno}, apellidoMaterno=#{apellidoMaterno}, 
-        CURP=#{CURP}, correoElectronico=#{correoElectronico}, username=#{username}, contrasenia=#{contrasenia}, 
-        rol=#{rol}, idEmpresa=#{idEmpresa} 
+        UPDATE usuarios
+        SET
+        nombre=#{nombre}, apellidoPaterno=#{apellidoPaterno}, apellidoMaterno=#{apellidoMaterno},
+        CURP=#{CURP}, correoElectronico=#{correoElectronico}, username=#{username}, contrasenia=#{contrasenia},
+        rol=#{rol}, idEmpresa=#{idEmpresa}
         WHERE idUsuario=#{idUsuario}
     </update>
-
 
     <delete id="eliminarUsuario" parameterType="int">
         DELETE FROM usuarios

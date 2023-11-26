@@ -59,17 +59,18 @@ public class UsuariosDAO {
 
     }
     public static Mensaje editarUsuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, String rol, Integer idEmpresa) {
-        Usuarios usuario=new Usuarios();
+        Usuarios usuario = new Usuarios();
         HashMap<String,Object> parametros = new HashMap<>();
-        parametros.put("idUsuario",idUsuario);
-        usuario.setNombre(nombre);
-        usuario.setApellidoPaterno(apellidoPaterno);
-        usuario.setApellidoMaterno(apellidoMaterno);
-        usuario.setCURP(CURP);
-        usuario.setCorreoElectronico(correoElectronico);
-        usuario.setUsername(username);
-        usuario.setRol(rol);
-        usuario.setIdEmpresa(idEmpresa);
+        parametros.put("idUsuario", idUsuario);
+        parametros.put("nombre",nombre);
+        parametros.put("apellidoPaterno",apellidoPaterno);
+        parametros.put("apellidoMaterno",apellidoMaterno);        
+        parametros.put("CURP", CURP);
+        parametros.put("correoElectronico", correoElectronico);
+        parametros.put("username", username);
+        parametros.put("contrasenia", contrasenia);
+        parametros.put("rol", rol);
+        parametros.put("idEmpresa", idEmpresa);
         
         Mensaje mensaje=new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
@@ -78,7 +79,7 @@ public class UsuariosDAO {
             try {
                 Usuarios usuarioExiste= conexionBD.selectOne("usuarios.mostrarUsuarioPorId",idUsuario);
                 if(usuarioExiste!=null){
-                    int numFilasAfectadas=conexionBD.insert("usuarios.editarUsuario", parametros);
+                    int numFilasAfectadas=conexionBD.update("usuarios.editarUsuario", parametros);
                     conexionBD.commit();
                     if(numFilasAfectadas>0){
                         mensaje.setError(false);
@@ -113,12 +114,12 @@ public class UsuariosDAO {
                     conexionBD.commit();
                     if(numFilasAfectadas>0){
                         mensaje.setError(false);
-                        mensaje.setMensaje("Usuario editado");
+                        mensaje.setMensaje("Usuario Eliminado");
                     }else{
-                       mensaje.setMensaje("Hubo un error al editar el Usuario, por favor de intentar mas tarde");
+                       mensaje.setMensaje("Hubo un error al Eliminar el Usuario, por favor de intentar mas tarde");
                     }
                 }else{
-                    mensaje.setMensaje("Paciente no encontrado");
+                    mensaje.setMensaje("Paciente no existe");
                 }
             }catch(Exception e){
             mensaje.setMensaje("Error: "+ e);
