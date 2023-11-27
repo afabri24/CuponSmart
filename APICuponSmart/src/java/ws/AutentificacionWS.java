@@ -26,7 +26,7 @@ import modelo.pojo.RespuestaLoginEscritorio;
  *
  * @author afabri24
  */
-@Path("autenticacion")
+@Path("autentificacion")
 public class AutentificacionWS {
 
     @Context

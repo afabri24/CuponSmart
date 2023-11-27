@@ -12,12 +12,12 @@ package clientecuponsmart.modelo.pojo;
 public class RespuestaLogin {
     private Boolean error;
     private String mensaje;
-    private Usuarios Usuario;
+    private Usuarios usuarioSesion;
 
-    public RespuestaLogin(Boolean error, String mensaje, Usuarios Usuario) {
+    public RespuestaLogin(Boolean error, String mensaje, Usuarios usuarioSesion) {
         this.error = error;
         this.mensaje = mensaje;
-        this.Usuario = Usuario;
+        this.usuarioSesion = usuarioSesion;
     }
 
     public RespuestaLogin() {
@@ -39,13 +39,15 @@ public class RespuestaLogin {
         this.mensaje = mensaje;
     }
 
-    public Usuarios getUsuario() {
-        return Usuario;
+    public Usuarios getUsuarioSesion() {
+        return usuarioSesion;
     }
 
-    public void setUsuario(Usuarios Usuario) {
-        this.Usuario = Usuario;
+    public void setUsuarioSesion(Usuarios usuarioSesion) {
+        this.usuarioSesion = usuarioSesion;
     }
+
+
     
     
 }

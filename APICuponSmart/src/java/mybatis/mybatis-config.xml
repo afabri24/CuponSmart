@@ -16,9 +16,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
                 <property name="url" value="jdbc:mysql://localhost:3306/cuponsmart?serverTimezone=UTC"/>   
 
-                <property name="username" value="root"/>    
+                <property name="username" value="adminCuponSmart"/>    
 
-                <property name="password" value="159751"/>
+                <property name="password" value="spiderman2442"/>
 
                 <property name="poolMaximumActiveConnections" value="50"/>
 

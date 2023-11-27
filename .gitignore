@@ -1,3 +1,7 @@
 /ClienteEscritorioCuponSmart/nbproject/private/
 
 *.class
+/ClienteEscritorioCuponSmart/build/
+
+/ClienteEscritorioCuponSmart/src/mybatis/mybatis-config.xml
+/ClienteEscritorioCuponSmart/dist/
