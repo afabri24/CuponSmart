@@ -20,11 +20,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author afabri24
- */
 public class FXMLIniciarSesionController implements Initializable {
 
     @FXML
@@ -36,9 +31,7 @@ public class FXMLIniciarSesionController implements Initializable {
     @FXML
     private PasswordField pfContrasenia;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
