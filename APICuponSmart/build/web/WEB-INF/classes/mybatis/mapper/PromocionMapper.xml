@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="promocion">
+    <select id="mostrarPromocionPorId" resultType="modelo.pojo.Promocion" parameterType="int">
+        SELECT * 
+        FROM promociones 
+        WHERE idPromocion=#{idPromocion}
+    </select>
+
+    <insert id="registrarPromocion" parameterType="modelo.pojo.Promocion">
+        INSERT INTO promociones 
+        (nombre, descripcion, imagen, fechaInicio, fechaTermino, restricciones, tipoPromocion, valorPromocion, 
+         categoria, cuponesMaximos, codigoPromocion, estatus, idEmpresa, idSucursal) 
+        VALUES 
+        (#{nombre}, #{descripcion}, #{imagen}, #{fechaInicio}, #{fechaTermino}, #{restricciones}, #{tipoPromocion}, 
+         #{valorPromocion}, #{categoria}, #{cuponesMaximos}, #{codigoPromocion}, #{estatus}, #{idEmpresa}, #{idSucursal})
+    </insert>
+
+    <update id="editarPromocion" parameterType="modelo.pojo.Promocion">
+        UPDATE promociones SET 
+        nombre=#{nombre}, descripcion=#{descripcion}, imagen=#{imagen}, fechaInicio=#{fechaInicio}, fechaTermino=#{fechaTermino}, 
+        restricciones=#{restricciones}, tipoPromocion=#{tipoPromocion}, valorPromocion=#{valorPromocion}, categoria=#{categoria}, 
+        cuponesMaximos=#{cuponesMaximos}, codigoPromocion=#{codigoPromocion}, estatus=#{estatus}, idEmpresa=#{idEmpresa}, idSucursal=#{idSucursal}
+        WHERE idPromocion=#{idPromocion}
+    </update>
+
+    <delete id="eliminarPromocion" parameterType="int">
+        DELETE FROM promociones
+        WHERE idPromocion=#{idPromocion}
+    </delete>
+
+    <update id="guardarImagenPromocion" parameterType="map">
+        UPDATE promociones 
+        SET imagen=#{imagen} 
+        WHERE idPromocion=#{idPromocion}
+    </update>
+
+    <select id="obtenerImagenPromocion" parameterType="int" resultType="modelo.pojo.Promocion">
+        SELECT idPromocion, nombre, TO_BASE64(imagen) as 'imagenBase64' 
+        FROM promociones 
+        WHERE idPromocion=#{idPromocion}
+    </select>
+</mapper>
