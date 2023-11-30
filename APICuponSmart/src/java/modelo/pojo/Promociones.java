@@ -5,8 +5,6 @@
  */
 package modelo.pojo;
 
-import java.util.Date;
-
 /**
  *
  * @author ferna
@@ -15,14 +13,14 @@ public class Promociones {
     private int idPromocion;
     private String nombre;
     private String descripcion;
-    private byte[] imagen; // Se utiliza byte[] para representar datos binarios como imágenes
-    private Date fechaInicio;
-    private Date fechaTermino;
+    private byte[] imagen;
+    private String fechaInicio;
+    private String fechaTermino;
     private String restricciones;
     private int tipoPromocion;
     private float valorPromocion;
     private String categoria;
-    private Integer cuponesMaximos; // Se utiliza Integer para permitir nulos
+    private Integer cuponesMaximos;
     private String codigoPromocion;
     private int estatus;
     private int idEmpresa;
@@ -31,7 +29,7 @@ public class Promociones {
     public Promociones() {
     }
 
-    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, Date fechaInicio, Date fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
+    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
         this.idPromocion = idPromocion;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -81,19 +79,19 @@ public class Promociones {
         this.imagen = imagen;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaTermino() {
+    public String getFechaTermino() {
         return fechaTermino;
     }
 
-    public void setFechaTermino(Date fechaTermino) {
+    public void setFechaTermino(String fechaTermino) {
         this.fechaTermino = fechaTermino;
     }
 
@@ -168,6 +166,8 @@ public class Promociones {
     public void setIdSucursal(int idSucursal) {
         this.idSucursal = idSucursal;
     }
+
+    
 
     
 }

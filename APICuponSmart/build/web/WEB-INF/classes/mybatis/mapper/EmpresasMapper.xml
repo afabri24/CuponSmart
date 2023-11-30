@@ -9,6 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM empresas 
         WHERE email=#{email}
     </select>
+    <select id="mostrarEmpresaPorRFC" resultType="modelo.pojo.Empresas" parameterType="String">
+        SELECT * 
+        FROM empresas 
+        WHERE rfc=#{rfc}
+    </select>
     <select id="mostrarEmpresaPorId" resultType="modelo.pojo.Empresas" parameterType="int">
         SELECT * 
         FROM empresas 

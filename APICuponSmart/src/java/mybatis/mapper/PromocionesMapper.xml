@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          #{valorPromocion}, #{categoria}, #{cuponesMaximos}, #{codigoPromocion}, #{estatus}, #{idEmpresa}, #{idSucursal})
     </insert>
 
-    <update id="editarPromocion" parameterType="modelo.pojo.Promocion">
+    <update id="editarPromocion" parameterType="map">
         UPDATE promociones SET 
         nombre=#{nombre}, descripcion=#{descripcion}, imagen=#{imagen}, fechaInicio=#{fechaInicio}, fechaTermino=#{fechaTermino}, 
         restricciones=#{restricciones}, tipoPromocion=#{tipoPromocion}, valorPromocion=#{valorPromocion}, categoria=#{categoria}, 

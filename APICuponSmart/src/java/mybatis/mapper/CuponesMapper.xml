@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cupon">
+    <select id="mostrarCuponPorId" resultType="modelo.pojo.Cupon" parameterType="int">
+        SELECT idCupon,idPromocion 
+        FROM cupones 
+        WHERE idCupon=#{idCupon}
+    </select>
+    
+    <select id="mostrarCuponPorPromocion" resultType="modelo.pojo.Cupon" parameterType="int">
+        SELECT * 
+        FROM cupones 
+        WHERE idCupon=#{idCupon}
+    </select>
+
+    <insert id="registrarCupon" parameterType="modelo.pojo.Cupon">
+        INSERT INTO cupones 
+        (idPromocion, numeroCuponesDisponibles) 
+        VALUES 
+        (#{idPromocion}, #{numeroCuponesDisponibles})
+    </insert>
+
+    <delete id="eliminarCupon" parameterType="int">
+        DELETE FROM cupones
+        WHERE idCupon=#{idCupon}
+    </delete>
+
+    <select id="obtenerCuponesPorPromocion" resultType="modelo.pojo.Cupon" parameterType="int">
+        SELECT * 
+        FROM cupones 
+        WHERE idPromocion=#{idPromocion}
+    </select>
+
+    <update id="actualizarCuponesDisponibles" parameterType="map">
+        UPDATE cupones 
+        SET numeroCuponesDisponibles=#{numeroCuponesDisponibles} 
+        WHERE idCupon=#{idCupon}
+    </update>
+</mapper>

@@ -13,7 +13,7 @@ public class Empresas {
     private int idEmpresa;
     private String nombre;
     private String nombreComercial;
-    private byte[] logo; // Se asume que longblob se representa como un array de bytes
+    private byte[] logo;
     private String representanteLegal;
     private String email;
     private String telefono;

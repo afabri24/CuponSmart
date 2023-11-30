@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM sucursales 
         WHERE idSucursal=#{idSucursal}
     </select>
+    
+    <select id="mostrarSucursalesPorEmpresa" resultType="modelo.pojo.Sucursal" parameterType="int">
+        SELECT * 
+        FROM sucursales 
+        WHERE idEmpresa=#{idEmpresa}
+    </select>
 
     <insert id="registrarSucursal" parameterType="modelo.pojo.Sucursal">
         INSERT INTO sucursales 
@@ -18,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         (#{nombre}, #{telefono}, #{latitud}, #{longitud}, #{nombreEncargado}, #{idEmpresa}, #{idDireccion})
     </insert>
 
-    <update id="editarSucursal" parameterType="modelo.pojo.Sucursal">
+    <update id="editarSucursal" parameterType="map">
         UPDATE sucursales SET 
         nombre=#{nombre}, telefono=#{telefono}, latitud=#{latitud}, longitud=#{longitud}, nombreEncargado=#{nombreEncargado}, 
         idEmpresa=#{idEmpresa}, idDireccion=#{idDireccion}

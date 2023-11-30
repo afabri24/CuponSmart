@@ -18,14 +18,14 @@ public class Clientes {
     private String apellidoMaterno;
     private String telefono;
     private String correoElectronico;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private String contrasenia;
     private int idDireccion;
 
     public Clientes() {
     }
 
-    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, Date fechaNacimiento, String contrasenia, int idDireccion) {
+    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, int idDireccion) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -85,11 +85,11 @@ public class Clientes {
         this.correoElectronico = correoElectronico;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -108,6 +108,8 @@ public class Clientes {
     public void setIdDireccion(int idDireccion) {
         this.idDireccion = idDireccion;
     }
+
+   
     
     
 }
