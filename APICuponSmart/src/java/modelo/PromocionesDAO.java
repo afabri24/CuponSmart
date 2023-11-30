@@ -139,6 +139,31 @@ public class PromocionesDAO {
         }
         return mensaje;
     }
+    
+    public static Mensaje eliminarPromocion(int idPromocion) {
+        Mensaje mensaje = null;
+         mensaje.setError(true);
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if (conexionBD != null) {
+            try {
+                int numFilasAfectadas = conexionBD.delete("promocion.eliminarPromocion", idPromocion);
+                conexionBD.commit();
+                if (numFilasAfectadas > 0) {
+                    mensaje.setError(false);
+                    mensaje.setMensaje("Promocion eliminada");
+                } else {
+                    mensaje.setMensaje("Hubo un error al eliminar la promocion, por favor inténtalo más tarde");
+                }
+            } catch (Exception e) {
+                mensaje.setMensaje("Error: " + e);
+            } finally {
+                conexionBD.close();
+            }
+        } else {
+            mensaje.setMensaje("Hubo un error al conectarse a la base de datos, por favor inténtalo más tarde");
+        }
+        return mensaje;
+    }
 
     public static Mensaje subirImagenPromocion(int idPromocion, byte[] imagen) {
         Mensaje mensaje = new Mensaje();

@@ -2,7 +2,7 @@
 package modelo.pojo;
 
 public class Direcciones {
-     private int idDireccion;
+    private int idDireccion;
     private String calle;
     private String numero;
     private String codigoPostal;

@@ -31,7 +31,9 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(SucursalesWS.class);
         resources.add(ws.AutentificacionWS.class);
+        resources.add(ws.DireccionesWS.class);
         resources.add(ws.EmpresasWS.class);
+        resources.add(ws.PromocionesWS.class);
         resources.add(ws.UsuariosWS.class);
     }
     
