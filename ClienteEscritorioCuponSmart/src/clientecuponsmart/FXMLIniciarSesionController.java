@@ -62,7 +62,7 @@ public class FXMLIniciarSesionController implements Initializable {
         if(respuesta.getError()==false){
             Utilidades.mostrarAlertaSimple("Credenciales Correctas",
                        respuesta.getMensaje(),Alert.AlertType.INFORMATION);
-            irPantallaPrincipal(respuesta.getUsuarioSesion());
+            irPantallaPrincipal(respuesta.getUsuariosSesion());
         }else{
              Utilidades.mostrarAlertaSimple("Credenciales Incorrectas",
                        respuesta.getMensaje(),Alert.AlertType.ERROR);
@@ -75,7 +75,7 @@ public class FXMLIniciarSesionController implements Initializable {
             Parent vista = loadMain.load();
             
             FXMLMenuInicialController controladorMenuInicial = loadMain.getController();
-            //controladorMenuInicial.inicializarInformacionMedico(usuario);
+            controladorMenuInicial.inicializarInformacionUsuario(usuario);
             
             Scene escena= new Scene(vista);
             stageActual.setScene(escena);

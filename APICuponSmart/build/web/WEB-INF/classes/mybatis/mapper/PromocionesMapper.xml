@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="promocion">
-    <select id="mostrarPromocionPorId" resultType="modelo.pojo.Promocion" parameterType="int">
+    <select id="mostrarPromocionPorId" resultType="modelo.pojo.Promociones" parameterType="int">
         SELECT * 
         FROM promociones 
         WHERE idPromocion=#{idPromocion}
     </select>
 
-    <insert id="registrarPromocion" parameterType="modelo.pojo.Promocion">
+    <insert id="registrarPromocion" parameterType="modelo.pojo.Promociones">
         INSERT INTO promociones 
         (nombre, descripcion, imagen, fechaInicio, fechaTermino, restricciones, tipoPromocion, valorPromocion, 
          categoria, cuponesMaximos, codigoPromocion, estatus, idEmpresa, idSucursal) 
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE idPromocion=#{idPromocion}
     </update>
 
-    <select id="obtenerImagenPromocion" parameterType="int" resultType="modelo.pojo.Promocion">
+    <select id="obtenerImagenPromocion" parameterType="int" resultType="modelo.pojo.Promociones">
         SELECT idPromocion, nombre, TO_BASE64(imagen) as 'imagenBase64' 
         FROM promociones 
         WHERE idPromocion=#{idPromocion}

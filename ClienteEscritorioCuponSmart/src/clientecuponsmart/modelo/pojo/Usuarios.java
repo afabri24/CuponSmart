@@ -19,7 +19,7 @@ public class Usuarios {
     private String username;
     private String contrasenia;
     private String rol;
-    private int idEmpresa;
+    private Integer idEmpresa;
 
     public Usuarios() {
     }

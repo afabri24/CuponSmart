@@ -5,19 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cupon">
-    <select id="mostrarCuponPorId" resultType="modelo.pojo.Cupon" parameterType="int">
+    <select id="mostrarCuponPorId" resultType="modelo.pojo.Cupones" parameterType="int">
         SELECT idCupon,idPromocion 
         FROM cupones 
         WHERE idCupon=#{idCupon}
     </select>
     
-    <select id="mostrarCuponPorPromocion" resultType="modelo.pojo.Cupon" parameterType="int">
+    <select id="mostrarCuponPorPromocion" resultType="modelo.pojo.Cupones" parameterType="int">
         SELECT * 
         FROM cupones 
         WHERE idCupon=#{idCupon}
     </select>
 
-    <insert id="registrarCupon" parameterType="modelo.pojo.Cupon">
+    <insert id="registrarCupon" parameterType="modelo.pojo.Cupones">
         INSERT INTO cupones 
         (idPromocion, numeroCuponesDisponibles) 
         VALUES 
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE idCupon=#{idCupon}
     </delete>
 
-    <select id="obtenerCuponesPorPromocion" resultType="modelo.pojo.Cupon" parameterType="int">
+    <select id="obtenerCuponesPorPromocion" resultType="modelo.pojo.Cupones" parameterType="int">
         SELECT * 
         FROM cupones 
         WHERE idPromocion=#{idPromocion}

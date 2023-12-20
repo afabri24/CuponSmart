@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cliente">
-    <select id="mostrarClientePorId" resultType="modelo.pojo.Cliente" parameterType="int">
+    <select id="mostrarClientePorId" resultType="modelo.pojo.Clientes" parameterType="int">
         SELECT * 
         FROM clientes 
         WHERE idCliente=#{idCliente}
     </select>
 
-    <insert id="registrarCliente" parameterType="modelo.pojo.Cliente">
+    <insert id="registrarCliente" parameterType="modelo.pojo.Clientes">
         INSERT INTO clientes 
         (nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaNacimiento, contrasenia, idDireccion) 
         VALUES 
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE idCliente=#{idCliente}
     </delete>
 
-    <select id="obtenerDireccionCliente" parameterType="int" resultType="modelo.pojo.Cliente">
+    <select id="obtenerDireccionCliente" parameterType="int" resultType="modelo.pojo.Clientes">
         SELECT idCliente, nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaNacimiento, contrasenia, 
         idDireccion, Calle, Numero, codigoPostal, ciudad, colonia
         FROM clientes 

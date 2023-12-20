@@ -5,20 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="direccion">
-    <select id="mostrarDireccionPorId" resultType="modelo.pojo.Direccion" parameterType="int">
+    <select id="mostrarDireccionPorId" resultType="modelo.pojo.Direcciones" parameterType="int">
         SELECT * 
         FROM direcciones 
         WHERE idDireccion=#{idDireccion}
     </select>
 
-    <insert id="registrarDireccion" parameterType="modelo.pojo.Direccion">
+    <insert id="registrarDireccion" parameterType="modelo.pojo.Direcciones">
         INSERT INTO direcciones 
         (Calle, Numero, codigoPostal, ciudad, colonia) 
         VALUES 
         (#{calle}, #{numero}, #{codigoPostal}, #{ciudad}, #{colonia})
     </insert>
 
-    <update id="editarDireccion" parameterType="modelo.pojo.Direccion">
+    <update id="editarDireccion" parameterType="modelo.pojo.Direcciones">
         UPDATE direcciones 
         SET Calle=#{calle}, Numero=#{numero}, codigoPostal=#{codigoPostal}, ciudad=#{ciudad}, colonia=#{colonia}
         WHERE idDireccion=#{idDireccion}
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE idDireccion=#{idDireccion}
     </delete>
 
-    <select id="obtenerTodasDirecciones" resultType="modelo.pojo.Direccion">
+    <select id="obtenerTodasDirecciones" resultType="modelo.pojo.Direcciones">
         SELECT * 
         FROM direcciones
     </select>
