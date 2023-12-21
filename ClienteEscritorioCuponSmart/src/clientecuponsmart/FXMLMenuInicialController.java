@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,10 +20,14 @@ public class FXMLMenuInicialController implements Initializable {
 
     Usuarios usuarioSesion;
     
+    private boolean esAdminGeneral=false;
+    
     @FXML
     private Label lbEmpresa;
     @FXML
     private Label lbUsuario;
+    @FXML
+    private Button btnCambiante;
 
 
     @Override
@@ -36,23 +41,12 @@ public class FXMLMenuInicialController implements Initializable {
 
     @FXML
     private void btnAbrirEmpresas(ActionEvent event) {
-        try{
-            FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLEmpresas.fxml"));
-            Parent vista = loadVista.load();
+        if(esAdminGeneral==true){
+            abrirAdminEmpresas();
+        }else{
             
-            
-           //FXMLAdminPacientesController controller =loadVista.getController();
-           //controller.inicializarInformacion(medicoSesion.getIdMedico());
-           
-           Scene escenaAdmin= new Scene(vista);
-           Stage escenarioAdmin=new Stage();
-           escenarioAdmin.setScene(escenaAdmin);
-           escenarioAdmin.setTitle("Empresas");
-           escenarioAdmin.initModality(Modality.APPLICATION_MODAL);
-           escenarioAdmin.showAndWait();
-        }catch(IOException e){
-            e.printStackTrace();
         }
+        
     }
 
     @FXML
@@ -68,9 +62,52 @@ public class FXMLMenuInicialController implements Initializable {
         
         if(usuarioSesion.getIdEmpresa()==0){
             lbEmpresa.setText("Cupon Smart, administrador General");
+            esAdminGeneral=true;
         }else{
             lbEmpresa.setText("empresaTODO, administrador empresa");
+            btnCambiante.setText("Sucursales");
         }
         
+    }
+    
+    
+    public void abrirAdminEmpresas(){
+        try{
+            FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLEmpresas.fxml"));
+            Parent vista = loadVista.load();
+            
+            
+           FXMLEmpresasController controller =loadVista.getController();
+           controller.inicializarInformacion();
+           
+           Scene escenaAdmin= new Scene(vista);
+           Stage escenarioAdmin=new Stage();
+           escenarioAdmin.setScene(escenaAdmin);
+           escenarioAdmin.setTitle("Empresas");
+           escenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+           escenarioAdmin.showAndWait();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+   
+    public void abrirAdminSucursales(){
+        try{
+            FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLSucursales.fxml"));
+            Parent vista = loadVista.load();
+            
+            
+           //FXMLEmpresasController controller =loadVista.getController();
+           //controller.inicializarInformacion();
+           
+           Scene escenaAdmin= new Scene(vista);
+           Stage escenarioAdmin=new Stage();
+           escenarioAdmin.setScene(escenaAdmin);
+           escenarioAdmin.setTitle("Sucursales");
+           escenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+           escenarioAdmin.showAndWait();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
