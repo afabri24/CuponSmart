@@ -23,7 +23,7 @@ public class EmpresasDAO {
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                empresas = conexionBD.selectList("empresa.obtenerTodasEmpresas");
+                empresas = conexionBD.selectList("empresa.mostrarTodasEmpresas");
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -38,7 +38,7 @@ public class EmpresasDAO {
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                empresa = conexionBD.selectOne("empresa.obtenerEmpresaPorId", idEmpresas);
+                empresa = conexionBD.selectOne("empresa.mostrarEmpresaPorId", idEmpresas);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -53,7 +53,7 @@ public class EmpresasDAO {
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                empresa = conexionBD.selectOne("empresa.obtenerEmpresaPorRFC", rfc);
+                empresa = conexionBD.selectOne("empresa.mostrarEmpresaPorRFC", rfc);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -63,7 +63,7 @@ public class EmpresasDAO {
         return empresa;
     }
     
-    public static Mensaje registrarEmpresa(String nombre, String nombreComercial, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus) {
+    public static Mensaje registrarEmpresa(String nombre, String nombreComercial, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus,int idDireccion) {
         Empresas empresa = new Empresas();
         empresa.setNombre(nombre);
         empresa.setNombreComercial(nombreComercial);
@@ -73,6 +73,7 @@ public class EmpresasDAO {
         empresa.setPaginaWeb(paginaWeb);
         empresa.setRFC(RFC);
         empresa.setEstatus(estatus);
+        empresa.setIdDireccion(idDireccion);
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
         mensaje.setError(true);
@@ -102,19 +103,17 @@ public class EmpresasDAO {
         return mensaje;
     }
     
-    public static Mensaje editarEmpresa(int idEmpresas, String nombre, String nombreComercial, byte[] logo,
+    public static Mensaje editarEmpresa(int idEmpresas, String nombre, String nombreComercial,
             String representanteLegal, String email, String telefono, String paginaWeb,
-            String RFC, int estatus, int idDireccion) {
+             int estatus, int idDireccion) {
         Empresas empresa = new Empresas();
         empresa.setIdEmpresa(idEmpresas);
         empresa.setNombre(nombre);
         empresa.setNombreComercial(nombreComercial);
-        empresa.setLogo(logo);
         empresa.setRepresentanteLegal(representanteLegal);
         empresa.setEmail(email);
         empresa.setTelefono(telefono);
         empresa.setPaginaWeb(paginaWeb);
-        empresa.setRFC(RFC);
         empresa.setEstatus(estatus);
         empresa.setIdDireccion(idDireccion);
 

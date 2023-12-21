@@ -4,6 +4,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="empresa">
+    <select id="mostrarTodasEmpresas" resultType="modelo.pojo.Empresas">
+        SELECT * 
+        FROM empresas
+    </select>
     <select id="mostrarEmpresaPorEmail" resultType="modelo.pojo.Empresas" parameterType="String">
         SELECT * 
         FROM empresas 
@@ -19,35 +23,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM empresas 
         WHERE idPaciente=#{idPaciente}
     </select>    
+    
     <insert id="registrarEmpresa" parameterType="modelo.pojo.Empresas">
         INSERT INTO empresas 
-        (nombre, nombreComercial, logo, representanteLegal, email, telefono, paginaWeb, RFC, estatus, idDireccion) 
+        (nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus, idDireccion) 
         VALUES 
-        (#{nombre}, #{nombreComercial}, #{logo}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatus}, #{idDireccion})
+        (#{nombre}, #{nombreComercial}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatus}, #{idDireccion})
     </insert>
 
-    <update id="editar" parameterType="map">
-        UPDATE empresas SET 
-        nombre=#{nombre},apellidoPaterno=#{apellidoPaterno},fechaNacimiento=#{fechaNacimiento},sexo=#{sexo},peso=#{peso},estatura=#{estatura},tallaInicial=#{tallaInicial},telefono=#{telefono},contrasenia=#{contrasenia},medico=#{medico} 
-        WHERE idPaciente=#{idPaciente}
-    </update>
-    <delete id="eliminar" parameterType="int">
-        DELETE FROM empresas
-        WHERE idPaciente=#{idPacientes}
-    </delete>
-    
-    <update id="guardarFoto" parameterType="map">
+    <update id="guardarLogo" parameterType="map">
         UPDATE empresas 
-        SET fotografia=#{foto} 
-        WHERE idPaciente=#{idPaciente}
+        SET logo=#{foto} 
+        WHERE idEmpresa=#{idEmpresa}
     </update>
     
-    <select id="obtenerFoto" parameterType="int" resultType="modelo.pojo.Empresas">
-        SELECT idPaciente,nombre,apellidoPaterno,ApellidoMaterno,TO_BASE64(fotografia) as 'fotografiaBase64' 
-        FROM empresas 
-        WHERE idPaciente=#{idPaciente}
-        
-    </select>
     <update id="editarEmpresa" parameterType="modelo.pojo.Empresas">
         UPDATE empresas SET 
         nombre=#{nombre}, nombreComercial=#{nombreComercial}, logo=#{logo}, representanteLegal=#{representanteLegal}, 
