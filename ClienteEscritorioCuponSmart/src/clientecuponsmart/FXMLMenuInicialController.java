@@ -62,6 +62,7 @@ public class FXMLMenuInicialController implements Initializable {
         
         if(usuarioSesion.getIdEmpresa()==0){
             lbEmpresa.setText("Cupon Smart, administrador General");
+           System.out.println(usuarioSesion.getIdEmpresa());
             esAdminGeneral=true;
         }else{
             lbEmpresa.setText("empresaTODO, administrador empresa");

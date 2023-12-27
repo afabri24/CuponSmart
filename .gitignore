@@ -12,3 +12,4 @@ APICuponSmart/build/web/WEB-INF/classes/mybatis/mybatis-config.xml
 APICuponSmart/nbproject/private/private.xml
 APICuponSmart/src/java/ws/ApplicationConfig.java
 *.class
+*.class

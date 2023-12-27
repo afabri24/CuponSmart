@@ -41,7 +41,7 @@ public class UsuariosWS {
                                      @FormParam("correoElectronico")String correoElectronico,
                                      @FormParam("username") String username,
                                      @FormParam("contrasenia")String contrasenia,
-                                     @FormParam("rol")String rol,
+                                     @FormParam("rol")int rol,
                                      @FormParam("idEmpresa")int idEmpresa){
         Usuarios usuario = null;
         Mensaje mensaje=null;
@@ -63,7 +63,7 @@ public class UsuariosWS {
                                      @FormParam("correoElectronico")String correoElectronico,
                                      @FormParam("username") String username,
                                      @FormParam("contrasenia")String contrasenia,
-                                     @FormParam("rol")String rol,
+                                     @FormParam("rol")int rol,
                                      @FormParam("idEmpresa")Integer idEmpresa){
         Usuarios usuario = null;
         Mensaje mensaje=null;

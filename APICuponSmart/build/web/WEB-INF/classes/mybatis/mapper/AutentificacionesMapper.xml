@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="autentificacion">
     
     <select id="loginEscritorio" resultType="modelo.pojo.Usuarios" parameterType="map">
-        SELECT idUsuario, nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, rol
+        SELECT idUsuario, nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, rol,idEmpresa
         FROM usuarios
         WHERE username = #{username} AND contrasenia = #{contrasenia}
 
