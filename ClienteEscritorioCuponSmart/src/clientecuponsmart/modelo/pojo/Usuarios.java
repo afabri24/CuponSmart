@@ -18,13 +18,10 @@ public class Usuarios {
     private String correoElectronico;
     private String username;
     private String contrasenia;
-    private String rol;
+    private int rol;
     private Integer idEmpresa;
 
-    public Usuarios() {
-    }
-
-    public Usuarios(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, String rol, int idEmpresa) {
+    public Usuarios(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, int rol, Integer idEmpresa) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -35,6 +32,9 @@ public class Usuarios {
         this.contrasenia = contrasenia;
         this.rol = rol;
         this.idEmpresa = idEmpresa;
+    }
+
+    public Usuarios() {
     }
 
     public int getIdUsuario() {
@@ -101,21 +101,21 @@ public class Usuarios {
         this.contrasenia = contrasenia;
     }
 
-    public String getRol() {
+    public int getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(int rol) {
         this.rol = rol;
     }
 
-    public int getIdEmpresa() {
+    public Integer getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
-    
+
     
 }

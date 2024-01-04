@@ -18,7 +18,7 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class ClientesDAO {
     public static Mensaje registrarCliente(String nombre, String apellidoPaterno, String apellidoMaterno,
-         String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, int idDireccion) {
+         String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, String Direccion) {
         Clientes cliente = new Clientes();
         cliente.setNombre(nombre);
         cliente.setApellidoPaterno(apellidoPaterno);
@@ -27,7 +27,7 @@ public class ClientesDAO {
         cliente.setCorreoElectronico(correoElectronico);
         cliente.setFechaNacimiento(fechaNacimiento);
         cliente.setContrasenia(contrasenia);
-        cliente.setIdDireccion(idDireccion);
+        cliente.setContrasenia(Direccion);
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
@@ -54,7 +54,7 @@ public class ClientesDAO {
     }
 
         public static Mensaje editarCliente(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno,
-            String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, int idDireccion) {
+            String telefono, String fechaNacimiento, String contrasenia, String direccion) {
 
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("idCliente", idCliente);
@@ -62,10 +62,9 @@ public class ClientesDAO {
         parametros.put("apellidoPaterno", apellidoPaterno);
         parametros.put("apellidoMaterno", apellidoMaterno);
         parametros.put("telefono", telefono);
-        parametros.put("correoElectronico", correoElectronico);
         parametros.put("fechaNacimiento", fechaNacimiento);
         parametros.put("contrasenia", contrasenia);
-        parametros.put("idDireccion", idDireccion);
+        parametros.put("direccion", direccion);
 
         Mensaje mensaje = new Mensaje();
         mensaje.setError(true);

@@ -25,6 +25,7 @@ import modelo.pojo.Mensaje;
  *
  * @author afabri24
  */
+@Path("clientes")
 public class ClientesWS {
     @Context
     private UriInfo context;
@@ -40,14 +41,14 @@ public class ClientesWS {
                                     @FormParam("apellidoPaterno") String apellidoPaterno,
                                     @FormParam("apellidoMaterno") String apellidoMaterno,
                                     @FormParam("telefono") String telefono,
+                                    @FormParam("direccion") String direccion,
                                     @FormParam("correoElectronico") String correoElectronico,
                                     @FormParam("fechaNacimiento") String fechaNacimiento,
-                                    @FormParam("contrasenia") String contrasenia,
-                                    @FormParam("idDireccion") int idDireccion) {
+                                    @FormParam("contrasenia") String contrasenia) {
         Mensaje mensaje = null;
         if (nombre != null && !nombre.isEmpty()) {
-            mensaje = ClientesDAO.registrarCliente(nombre, apellidoPaterno, apellidoMaterno, telefono,
-                    correoElectronico, fechaNacimiento, contrasenia, idDireccion);
+            mensaje = ClientesDAO.registrarCliente(nombre, apellidoPaterno, apellidoMaterno, telefono,direccion,
+                    correoElectronico, fechaNacimiento, contrasenia);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -62,14 +63,13 @@ public class ClientesWS {
                                  @FormParam("apellidoPaterno") String apellidoPaterno,
                                  @FormParam("apellidoMaterno") String apellidoMaterno,
                                  @FormParam("telefono") String telefono,
-                                 @FormParam("correoElectronico") String correoElectronico,
+                                 @FormParam("direccion") String direccion,
                                  @FormParam("fechaNacimiento") String fechaNacimiento,
-                                 @FormParam("contrasenia") String contrasenia,
-                                 @FormParam("idDireccion") int idDireccion) {
+                                 @FormParam("contrasenia") String contrasenia) {
         Mensaje mensaje = null;
         if (idCliente > 0) {
             mensaje = ClientesDAO.editarCliente(idCliente, nombre, apellidoPaterno, apellidoMaterno, telefono,
-                    correoElectronico, fechaNacimiento, contrasenia, idDireccion);
+                    direccion, fechaNacimiento, contrasenia);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }

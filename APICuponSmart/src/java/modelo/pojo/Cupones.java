@@ -13,15 +13,19 @@ public class Cupones {
 
     private int idCupon;
     private int idPromocion;
-    private Integer numeroCuponesDisponibles;
+    private String codigo;
+    private String estatus;
+    private int idCliente;
 
-    public Cupones() {
-    }
-
-    public Cupones(int idCupon, int idPromocion, Integer numeroCuponesDisponibles) {
+    public Cupones(int idCupon, int idPromocion, String codigo, String estatus, int idCliente) {
         this.idCupon = idCupon;
         this.idPromocion = idPromocion;
-        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
+        this.codigo = codigo;
+        this.estatus = estatus;
+        this.idCliente = idCliente;
+    }
+
+    public Cupones() {
     }
 
     public int getIdCupon() {
@@ -40,13 +44,30 @@ public class Cupones {
         this.idPromocion = idPromocion;
     }
 
-    public Integer getNumeroCuponesDisponibles() {
-        return numeroCuponesDisponibles;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setNumeroCuponesDisponibles(Integer numeroCuponesDisponibles) {
-        this.numeroCuponesDisponibles = numeroCuponesDisponibles;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     
     
 }

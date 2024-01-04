@@ -44,7 +44,7 @@ public class FXMLMenuInicialController implements Initializable {
         if(esAdminGeneral==true){
             abrirAdminEmpresas();
         }else{
-            
+            //TODOabirsucursales
         }
         
     }
@@ -60,9 +60,9 @@ public class FXMLMenuInicialController implements Initializable {
         }
         lbUsuario.setText("Nombre: "+usuarioSesion.getNombre()+" "+usuarioSesion.getApellidoPaterno()+" "+usuario.getApellidoMaterno());
         
-        if(usuarioSesion.getIdEmpresa()==0){
+        if(usuarioSesion.getRol()==1){
             lbEmpresa.setText("Cupon Smart, administrador General");
-           System.out.println(usuarioSesion.getIdEmpresa());
+           System.out.println(usuarioSesion.getRol());
             esAdminGeneral=true;
         }else{
             lbEmpresa.setText("empresaTODO, administrador empresa");

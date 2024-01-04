@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.pojo;
+package clientecuponsmart.modelo.pojo;
 
 /**
  *
- * @author ferna
+ * @author afabri24
  */
 public class Promociones {
     private int idPromocion;
@@ -17,16 +17,16 @@ public class Promociones {
     private String fechaInicio;
     private String fechaTermino;
     private String restricciones;
-    private String tipo;
-    private float valor;
+    private int tipoPromocion;
+    private float valorPromocion;
     private String categoria;
     private Integer cuponesMaximos;
-    private String codigo;
-    private String estatus;
+    private String codigoPromocion;
+    private int estatus;
     private int idEmpresa;
-    private String imagenBase64;
+    private int idSucursal;
 
-    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, String tipo, float valor, String categoria, Integer cuponesMaximos, String codigo, String estatus, int idEmpresa, String imagenBase64) {
+    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
         this.idPromocion = idPromocion;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -34,14 +34,14 @@ public class Promociones {
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
         this.restricciones = restricciones;
-        this.tipo = tipo;
-        this.valor = valor;
+        this.tipoPromocion = tipoPromocion;
+        this.valorPromocion = valorPromocion;
         this.categoria = categoria;
         this.cuponesMaximos = cuponesMaximos;
-        this.codigo = codigo;
+        this.codigoPromocion = codigoPromocion;
         this.estatus = estatus;
         this.idEmpresa = idEmpresa;
-        this.imagenBase64 = imagenBase64;
+        this.idSucursal = idSucursal;
     }
 
     public Promociones() {
@@ -103,20 +103,20 @@ public class Promociones {
         this.restricciones = restricciones;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getTipoPromocion() {
+        return tipoPromocion;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoPromocion(int tipoPromocion) {
+        this.tipoPromocion = tipoPromocion;
     }
 
-    public float getValor() {
-        return valor;
+    public float getValorPromocion() {
+        return valorPromocion;
     }
 
-    public void setValor(float valor) {
-        this.valor = valor;
+    public void setValorPromocion(float valorPromocion) {
+        this.valorPromocion = valorPromocion;
     }
 
     public String getCategoria() {
@@ -135,19 +135,19 @@ public class Promociones {
         this.cuponesMaximos = cuponesMaximos;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoPromocion() {
+        return codigoPromocion;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoPromocion(String codigoPromocion) {
+        this.codigoPromocion = codigoPromocion;
     }
 
-    public String getEstatus() {
+    public int getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(String estatus) {
+    public void setEstatus(int estatus) {
         this.estatus = estatus;
     }
 
@@ -159,14 +159,14 @@ public class Promociones {
         this.idEmpresa = idEmpresa;
     }
 
-    public String getImagenBase64() {
-        return imagenBase64;
+    public int getIdSucursal() {
+        return idSucursal;
     }
 
-    public void setImagenBase64(String imagenBase64) {
-        this.imagenBase64 = imagenBase64;
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
     }
-
-   
+    
+    
     
 }

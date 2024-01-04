@@ -21,8 +21,9 @@ public class Empresas {
     private String RFC;
     private int estatus;
     private int idDireccion;
+    private String logoBase64;
 
-    public Empresas(int idEmpresa, String nombre, String nombreComercial, byte[] logo, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus, int idDireccion) {
+    public Empresas(int idEmpresa, String nombre, String nombreComercial, byte[] logo, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus, int idDireccion, String logoBase64) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
         this.nombreComercial = nombreComercial;
@@ -34,6 +35,7 @@ public class Empresas {
         this.RFC = RFC;
         this.estatus = estatus;
         this.idDireccion = idDireccion;
+        this.logoBase64 = logoBase64;
     }
 
     public Empresas() {
@@ -126,6 +128,16 @@ public class Empresas {
     public void setIdDireccion(int idDireccion) {
         this.idDireccion = idDireccion;
     }
+
+    public String getLogoBase64() {
+        return logoBase64;
+    }
+
+    public void setLogoBase64(String logoBase64) {
+        this.logoBase64 = logoBase64;
+    }
+
+    
     
     
 }

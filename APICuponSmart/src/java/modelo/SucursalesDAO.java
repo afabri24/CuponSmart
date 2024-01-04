@@ -66,15 +66,18 @@ public class SucursalesDAO {
     }
 
     public static Mensaje registrarSucursal(String nombre, String telefono, float latitud,
-            float longitud, String nombreEncargado, int idEmpresa, int idDireccion) {
+            float longitud, String nombreEncargado, int idEmpresa, String direccion,String codigoPostal,String ciudad) {
         Sucursales sucursal = new Sucursales();
         sucursal.setNombre(nombre);
         sucursal.setTelefono(telefono);
+        sucursal.setDireccion(direccion);
+        sucursal.setCodigoPostal(codigoPostal);
+        sucursal.setCiudad(ciudad);
         sucursal.setLatitud(latitud);
         sucursal.setLongitud(longitud);
         sucursal.setNombreEncargado(nombreEncargado);
         sucursal.setIdEmpresa(idEmpresa);
-        sucursal.setIdDireccion(idDireccion);
+        
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
@@ -101,17 +104,19 @@ public class SucursalesDAO {
     }
 
     public static Mensaje editarSucursal(int idSucursal, String nombre, String telefono, float latitud,
-            float longitud, String nombreEncargado, int idEmpresa, int idDireccion) {
+            float longitud, String nombreEncargado,String direccion,String codigoPostal,String ciudad) {
 
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("idSucursal", idSucursal);
         parametros.put("nombre", nombre);
         parametros.put("telefono", telefono);
+        parametros.put("direccion", direccion);
+        parametros.put("codigoPostal", codigoPostal);
+        parametros.put("ciudad", ciudad);
         parametros.put("latitud", latitud);
         parametros.put("longitud", longitud);
         parametros.put("nombreEncargado", nombreEncargado);
-        parametros.put("idEmpresa", idEmpresa);
-        parametros.put("idDireccion", idDireccion);
+        
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();

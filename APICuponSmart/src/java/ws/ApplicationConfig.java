@@ -23,7 +23,6 @@ public class ApplicationConfig extends Application {
         resources.add(ws.AutentificacionWS.class);
         resources.add(ws.ClientesWS.class);
         resources.add(ws.CuponesWS.class);
-        resources.add(ws.DireccionesWS.class);
         resources.add(ws.EmpresasWS.class);
         resources.add(ws.PromocionesWS.class);
         resources.add(ws.SucursalesWS.class);

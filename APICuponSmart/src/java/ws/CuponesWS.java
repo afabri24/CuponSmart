@@ -6,10 +6,12 @@
 package ws;
 
 import java.util.List;
+import java.util.Random;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,6 +28,7 @@ import modelo.pojo.Mensaje;
  *
  * @author afabri24
  */
+@Path("cupones")
 public class CuponesWS {
     @Context
     private UriInfo context;
@@ -49,11 +52,31 @@ public class CuponesWS {
     @Path("registrar")
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje registrarCupon(@FormParam("idPromocion") int idPromocion,
-                                  @FormParam("numeroCuponesDisponibles") Integer numeroCuponesDisponibles) {
+                                  @FormParam("estatus") String estatus,
+                                  @FormParam("idPromocion") int idCliente) {
         Mensaje mensaje = null;
-        if (idPromocion > 0 && numeroCuponesDisponibles != null && numeroCuponesDisponibles >= 0) {
-            mensaje = CuponesDAO.registrarCupon(idPromocion, numeroCuponesDisponibles);
-        } else {
+        // Generar el código del cupón
+        String codigo = generarCodigoAlfanumerico();
+        Cupones cupon=CuponesDAO.obtenerCuponPorCodigo(codigo);
+        if(cupon==null){
+            mensaje = CuponesDAO.registrarCupon(idPromocion,codigo, estatus,idCliente);
+        }else {
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        
+        
+        return mensaje;
+    }
+    
+    @PUT
+    @Path("editar")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje editarCupon(@FormParam("idCupon") int idCupon,
+                                @FormParam("estatus") String estatus) {
+        Mensaje mensaje = null;
+       if(idCupon!=0){
+           mensaje = CuponesDAO.editarCupon(idCupon, estatus);
+       }else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return mensaje;
@@ -71,5 +94,20 @@ public class CuponesWS {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return mensaje;
+    }
+    
+    
+    public static String generarCodigoAlfanumerico() {
+
+        // Generar un conjunto de caracteres alfanuméricos
+        char[] caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+
+        // Generar un código de 6 caracteres
+        String codigo = "";
+        for (int i = 0; i < 6; i++) {
+            codigo += caracteres[new Random().nextInt(caracteres.length)];
+        }
+
+        return codigo;
     }
 }

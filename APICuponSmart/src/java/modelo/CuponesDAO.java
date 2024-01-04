@@ -45,11 +45,28 @@ public class CuponesDAO {
         }
         return cupon;
     }
+    
+    public static Cupones obtenerCuponPorCodigo(String codigo) {
+        Cupones cupon = null;
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if (conexionBD != null) {
+            try {
+                cupon = conexionBD.selectOne("cupon.obtenerCuponPorCodigo", codigo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return cupon;
+    }
 
-    public static Mensaje registrarCupon(int idPromocion, Integer numeroCuponesDisponibles) {
+    public static Mensaje registrarCupon(int idPromocion, String codigo,String estatus,int idCliente) {
         Cupones cupon = new Cupones();
         cupon.setIdPromocion(idPromocion);
-        cupon.setNumeroCuponesDisponibles(numeroCuponesDisponibles);
+        cupon.setCodigo(codigo);
+        cupon.setEstatus(estatus);
+        cupon.setIdCliente(idCliente);
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
@@ -63,6 +80,35 @@ public class CuponesDAO {
                     mensaje.setMensaje("Cupón registrado");
                 } else {
                     mensaje.setMensaje("Hubo un error al registrar el Cupón, por favor inténtalo más tarde");
+                }
+            } catch (Exception e) {
+                mensaje.setMensaje("Error: " + e);
+            } finally {
+                conexionBD.close();
+            }
+        } else {
+            mensaje.setMensaje("Hubo un error al conectarse a la base de datos, por favor inténtalo más tarde");
+        }
+        return mensaje;
+    }
+    
+    public static Mensaje editarCupon(int idCupon,String estatus) {
+        Cupones cupon = new Cupones();
+        cupon.setIdCupon(idCupon);
+        cupon.setEstatus(estatus);
+
+        Mensaje mensaje = new Mensaje();
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        mensaje.setError(true);
+        if (conexionBD != null) {
+            try {
+                int numFilasAfectadas = conexionBD.update("cupon.editarCupon", cupon);
+                conexionBD.commit();
+                if (numFilasAfectadas > 0) {
+                    mensaje.setError(false);
+                    mensaje.setMensaje("Cupón editado");
+                } else {
+                    mensaje.setMensaje("Hubo un error al editar el Cupón, por favor inténtalo más tarde");
                 }
             } catch (Exception e) {
                 mensaje.setMensaje("Error: " + e);

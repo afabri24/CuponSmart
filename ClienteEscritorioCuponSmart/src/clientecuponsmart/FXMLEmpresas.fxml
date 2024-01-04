@@ -12,10 +12,10 @@
    <children>
       <TableView fx:id="tvEmpresas" layoutX="17.0" layoutY="183.0" prefHeight="523.0" prefWidth="976.0">
         <columns>
-          <TableColumn fx:id="colNombre" prefWidth="473.0" text="Nombre de la Empresa" />
-          <TableColumn fx:id="colRepresentante" prefWidth="205.0" text="Representante Legal" />
-          <TableColumn fx:id="colEmail" prefWidth="197.0" text="Correo Electrónico" />
-          <TableColumn fx:id="colEstatus" minWidth="0.0" prefWidth="100.0" text="Estatus" />
+          <TableColumn fx:id="colNombre" prefWidth="270.0" text="Nombre de la Empresa" />
+          <TableColumn fx:id="colRepresentante" prefWidth="218.0" text="Representante Legal" />
+          <TableColumn fx:id="colEmail" prefWidth="255.0" text="Correo Electrónico" />
+          <TableColumn fx:id="colPaginaWeb" minWidth="0.0" prefWidth="232.0" text="Pagina Web" />
         </columns>
       </TableView>
       <Pane layoutY="-2.0" prefHeight="71.0" prefWidth="1013.0" style="-fx-background-color: green;">

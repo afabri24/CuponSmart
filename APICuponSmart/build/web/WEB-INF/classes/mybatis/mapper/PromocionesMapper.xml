@@ -2,36 +2,53 @@
 
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+"http://mybatis.org//dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="promocion">
-    <select id="mostrarPromocionPorId" resultType="modelo.pojo.Promociones" parameterType="int">
-        SELECT * 
-        FROM promociones 
-        WHERE idPromocion=#{idPromocion}
-    </select>
 
-    <insert id="registrarPromocion" parameterType="modelo.pojo.Promociones">
-        INSERT INTO promociones 
-        (nombre, descripcion, imagen, fechaInicio, fechaTermino, restricciones, tipoPromocion, valorPromocion, 
-         categoria, cuponesMaximos, codigoPromocion, estatus, idEmpresa, idSucursal) 
-        VALUES 
-        (#{nombre}, #{descripcion}, #{imagen}, #{fechaInicio}, #{fechaTermino}, #{restricciones}, #{tipoPromocion}, 
-         #{valorPromocion}, #{categoria}, #{cuponesMaximos}, #{codigoPromocion}, #{estatus}, #{idEmpresa}, #{idSucursal})
-    </insert>
+   <select id="mostrarPromocionPorId" resultType="modelo.pojo.Promociones" parameterType="int">
+       SELECT idPromocion, nombre, descripcion, fechaInicio, fechaTermino, restricciones, tipo, valor, 
+        categoria, cuponesMaximos, codigo, estatus, idEmpresa, idSucursal
+       FROM promociones
+       WHERE idPromocion = #{idPromocion}
+   </select>
 
-    <update id="editarPromocion" parameterType="map">
-        UPDATE promociones SET 
-        nombre=#{nombre}, descripcion=#{descripcion}, imagen=#{imagen}, fechaInicio=#{fechaInicio}, fechaTermino=#{fechaTermino}, 
-        restricciones=#{restricciones}, tipoPromocion=#{tipoPromocion}, valorPromocion=#{valorPromocion}, categoria=#{categoria}, 
-        cuponesMaximos=#{cuponesMaximos}, codigoPromocion=#{codigoPromocion}, estatus=#{estatus}, idEmpresa=#{idEmpresa}, idSucursal=#{idSucursal}
-        WHERE idPromocion=#{idPromocion}
-    </update>
+   <select id="mostrarPromocionesPorEmpresa" resultType="modelo.pojo.Promociones" parameterType="int">
+       SELECT idPromocion, nombre, descripcion, fechaInicio, fechaTermino, restricciones, tipo, valor, 
+        categoria, cuponesMaximos, codigo, estatus, idEmpresa
+       FROM promociones
+       WHERE idEmpresa = #{idEmpresa}
+   </select>
 
-    <delete id="eliminarPromocion" parameterType="int">
-        DELETE FROM promociones
-        WHERE idPromocion=#{idPromocion}
-    </delete>
+   <select id="mostrarPromocionesPorCodigoPromocion" resultType="modelo.pojo.Promociones" parameterType="int">
+       SELECT idPromocion, nombre, descripcion, fechaInicio, fechaTermino, restricciones, tipo, valor, 
+        categoria, cuponesMaximos, categoria, estatus, idEmpresa
+       FROM promociones
+       WHERE codigo = #{codigo}
+   </select>
+
+   <select id="mostrarPromocionesActivas" resultType="modelo.pojo.Promociones" parameterType="int">
+       SELECT idPromocion, nombre, descripcion, fechaInicio, fechaTermino, restricciones, tipo, valor, 
+        categoria, cuponesMaximos, codigo, estatus, idEmpresa,
+       FROM promociones
+       WHERE estatus = 'ACTIVO'
+   </select>
+
+   <insert id="registrarPromocion" parameterType="modelo.pojo.Promociones">
+       INSERT INTO promociones 
+       (nombre, descripcion, fechaInicio, fechaTermino, restricciones, tipo, valor, 
+        categoria, cuponesMaximos, codigo, estatus, idEmpresa) 
+       VALUES 
+       (#{nombre}, #{descripcion}, #{imagen}, #{fechaInicio}, #{fechaTermino}, #{restricciones}, #{tipo}, 
+        #{valor}, #{categoria}, #{cuponesMaximos}, #{codigo}, #{estatus}, #{idEmpresa})
+   </insert>
+
+   <update id="editarPromocion" parameterType="modelo.pojo.Promociones">
+       UPDATE promociones SET 
+       nombre=#{nombre}, descripcion=#{descripcion}, fechaInicio=#{fechaInicio}, fechaTermino=#{fechaTermino}, 
+       restricciones=#{restricciones}, tipo=#{tipo}, valor=#{valor}, categoria=#{categoria},cuponesMaximos=#{cuponesMaximos},estatus=#{estatus} 
+       WHERE idPromocion=#{idPromocion}
+
 
     <update id="guardarImagenPromocion" parameterType="map">
         UPDATE promociones 
@@ -43,5 +60,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT idPromocion, nombre, TO_BASE64(imagen) as 'imagenBase64' 
         FROM promociones 
         WHERE idPromocion=#{idPromocion}
+    </select>
+    
+    <update id="editarCupones" parameterType="modelo.pojo.Promociones">
+       UPDATE promociones SET 
+       cuponesMaximos=#{cuponesMaximos} 
+       WHERE idPromocion=#{idPromocion}
+    </update>
+    
+    <insert id="insertarPromocionSucursal" parameterType="modelo.pojo.PromocionesSucursales">
+    INSERT INTO promocionessucursales (
+        idPromocion,
+        idSucursal
+    )
+    VALUES
+    (
+        #{idPromocion},
+        #{idSucursal}
+    )
+    </insert>
+    
+    <select id="obtenerPromocionesSucursales" parameterType="int" resultType="modelo.pojo.Promociones">
+        SELECT promocionessucursales.idPromocion,promociones.nombre,promociones.tipo,promociones.valor,promociones.codigo 
+        FROM promocionessucursales 
+        INNER JOIN promociones ON promocionessucursales.idPromocion = promociones.idPromocion 
+        WHERE promocionessucursales.idSucursal=#{idSucursal}
     </select>
 </mapper>

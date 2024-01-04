@@ -4,48 +4,45 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="empresa">
-    <select id="mostrarTodasEmpresas" resultType="modelo.pojo.Empresas">
-        SELECT * 
-        FROM empresas
-    </select>
-    <select id="mostrarEmpresaPorEmail" resultType="modelo.pojo.Empresas" parameterType="String">
-        SELECT * 
-        FROM empresas 
-        WHERE email=#{email}
-    </select>
-    <select id="mostrarEmpresaPorRFC" resultType="modelo.pojo.Empresas" parameterType="String">
-        SELECT * 
-        FROM empresas 
-        WHERE rfc=#{rfc}
-    </select>
-    <select id="mostrarEmpresaPorId" resultType="modelo.pojo.Empresas" parameterType="int">
-        SELECT * 
-        FROM empresas 
-        WHERE idPaciente=#{idPaciente}
-    </select>    
-    
-    <insert id="registrarEmpresa" parameterType="modelo.pojo.Empresas">
-        INSERT INTO empresas 
-        (nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus, idDireccion) 
-        VALUES 
-        (#{nombre}, #{nombreComercial}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatus}, #{idDireccion})
-    </insert>
 
-    <update id="guardarLogo" parameterType="map">
-        UPDATE empresas 
-        SET logo=#{foto} 
-        WHERE idEmpresa=#{idEmpresa}
-    </update>
-    
-    <update id="editarEmpresa" parameterType="modelo.pojo.Empresas">
-        UPDATE empresas SET 
-        nombre=#{nombre}, nombreComercial=#{nombreComercial}, logo=#{logo}, representanteLegal=#{representanteLegal}, 
-        email=#{email}, telefono=#{telefono}, paginaWeb=#{paginaWeb}, RFC=#{RFC}, estatus=#{estatus}, idDireccion=#{idDireccion} 
-        WHERE idEmpresa=#{idEmpresa}
-    </update>
+   <select id="mostrarTodasEmpresas" resultType="modelo.pojo.Empresas">
+       SELECT idEmpresa, nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus 
+       FROM empresas 
+   </select>
 
-    <delete id="eliminarEmpresa" parameterType="int">
-        DELETE FROM empresas
+   <select id="mostrarEmpresaPorEmail" resultType="modelo.pojo.Empresas" parameterType="String">
+       SELECT idEmpresa, nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus,direccion,codigoPostal,ciudad 
+       FROM empresas 
+       WHERE email = #{email}
+   </select>
+
+   <select id="mostrarEmpresaPorRFC" resultType="modelo.pojo.Empresas" parameterType="String">
+       SELECT idEmpresa, nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus,direccion,codigoPostal,ciudad 
+       FROM empresas 
+       WHERE RFC = #{RFC}
+   </select>
+
+   <select id="mostrarEmpresaPorId" resultType="modelo.pojo.Empresas" parameterType="int">
+       SELECT idEmpresa, nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus,direccion,codigoPostal,ciudad 
+       FROM empresas 
+       WHERE idEmpresa = #{idEmpresa}
+   </select>
+
+   <insert id="registrarEmpresa" parameterType="modelo.pojo.Empresas">
+       INSERT INTO empresas (nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatus,direccion,codigoPostal,ciudad) 
+       VALUES (#{nombre}, #{nombreComercial}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatus},#{direccion},#{codigoPostal},#{ciudad})
+   </insert>
+
+    <update id="editarEmpresa" parameterType="modelo.pojo.Empresa">
+       UPDATE empresas 
+       SET nombre=#{nombre}, nombreComercial=#{nombreComercial}, logo=#{logo},
+       representanteLegal=#{representanteLegal}, telefono=#{telefono},
+       paginaWeb=#{paginaWeb}, estatus=#{estatus},#{direccion},#{codigoPostal},#{ciudad} 
+       WHERE idEmpresa = #{idEmpresa}
+   </update>
+
+    <delete id="eliminarEmpresas" parameterType="int">
+        DELETE FROM empresas 
         WHERE idEmpresa=#{idEmpresa}
     </delete>
 

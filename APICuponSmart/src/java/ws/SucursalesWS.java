@@ -15,6 +15,9 @@ import modelo.SucursalesDAO;
 import modelo.pojo.Mensaje;
 import modelo.pojo.Sucursales;
 
+
+
+@Path("sucursales")
 public class SucursalesWS {
     @Context
     private UriInfo context;
@@ -41,12 +44,14 @@ public class SucursalesWS {
                                     @FormParam("telefono") String telefono,
                                     @FormParam("latitud") float latitud,
                                     @FormParam("longitud") float longitud,
+                                    @FormParam("direccion") String direccion,
+                                    @FormParam("codigoPostal") String codigoPostal,
+                                    @FormParam("ciudad") String ciudad,
                                     @FormParam("nombreEncargado") String nombreEncargado,
-                                    @FormParam("idEmpresa") int idEmpresa,
-                                    @FormParam("idDireccion") int idDireccion) {
+                                    @FormParam("idEmpresa") int idEmpresa) {
         Mensaje mensaje = null;
         if (nombre != null && !nombre.isEmpty()) {
-            mensaje = SucursalesDAO.registrarSucursal(nombre, telefono, latitud, longitud, nombreEncargado, idEmpresa, idDireccion);
+            mensaje = SucursalesDAO.registrarSucursal(nombre, telefono, latitud, longitud, nombreEncargado, idEmpresa,direccion,codigoPostal,ciudad);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -61,12 +66,13 @@ public class SucursalesWS {
                                   @FormParam("telefono") String telefono,
                                   @FormParam("latitud") float latitud,
                                   @FormParam("longitud") float longitud,
-                                  @FormParam("nombreEncargado") String nombreEncargado,
-                                  @FormParam("idEmpresa") int idEmpresa,
-                                  @FormParam("idDireccion") int idDireccion) {
+                                  @FormParam("direccion") String direccion,
+                                  @FormParam("codigoPostal") String codigoPostal,
+                                  @FormParam("ciudad") String ciudad,
+                                  @FormParam("nombreEncargado") String nombreEncargado) {
         Mensaje mensaje = null;
         if (idSucursal != null) {
-            mensaje = SucursalesDAO.editarSucursal(idSucursal, nombre, telefono, latitud, longitud, nombreEncargado, idEmpresa, idDireccion);
+            mensaje = SucursalesDAO.editarSucursal(idSucursal, nombre, telefono, latitud, longitud, nombreEncargado,direccion,codigoPostal,ciudad);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }

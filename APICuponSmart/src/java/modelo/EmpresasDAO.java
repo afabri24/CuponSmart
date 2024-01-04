@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
 import java.util.LinkedHashMap;
@@ -12,10 +8,6 @@ import modelo.pojo.Mensaje;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
-/**
- *
- * @author ferna
- */
 public class EmpresasDAO {
     
     public static List<Empresas> obtenerEmpresas() {
@@ -23,7 +15,7 @@ public class EmpresasDAO {
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                empresas = conexionBD.selectList("empresa.mostrarTodasEmpresas");
+               empresas = conexionBD.selectList("empresa.mostrarTodasEmpresas");
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -63,17 +55,20 @@ public class EmpresasDAO {
         return empresa;
     }
     
-    public static Mensaje registrarEmpresa(String nombre, String nombreComercial, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus,int idDireccion) {
-        Empresas empresa = new Empresas();
+    public static Mensaje registrarEmpresa(String nombre, String nombreComercial, String representanteLegal, String email, String telefono,String direccion,String codigoPostal,String ciudad, String paginaWeb, String RFC, String estatus){
+        Empresas empresa=new Empresas();
         empresa.setNombre(nombre);
         empresa.setNombreComercial(nombreComercial);
         empresa.setRepresentanteLegal(representanteLegal);
         empresa.setEmail(email);
         empresa.setTelefono(telefono);
+        empresa.setDireccion(direccion);
+        empresa.setCodigoPostal(codigoPostal);
+        empresa.setCiudad(ciudad);
         empresa.setPaginaWeb(paginaWeb);
         empresa.setRFC(RFC);
         empresa.setEstatus(estatus);
-        empresa.setIdDireccion(idDireccion);
+        
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
         mensaje.setError(true);
@@ -81,7 +76,7 @@ public class EmpresasDAO {
             try {
                 Empresas empresaExiste = conexionBD.selectOne("empresa.mostrarEmpresaPorEmail", email);
                 if (empresaExiste == null) {
-                    int numFilasAfectadas = conexionBD.insert("empresa.registrar", empresa);
+                    int numFilasAfectadas = conexionBD.insert("empresa.registrarEmpresa", empresa);
                     conexionBD.commit();
                     if (numFilasAfectadas > 0) {
                         mensaje.setError(false);
@@ -90,7 +85,7 @@ public class EmpresasDAO {
                         mensaje.setMensaje("Hubo un error al registrar el Empresa, por favor de intentar mas tarde");
                     }
                 } else {
-                    mensaje.setMensaje("Empresa ya registrado");
+                    mensaje.setMensaje("Empresa ya registrada");
                 }
             } catch (Exception e) {
                 mensaje.setMensaje("Error: " + e);
@@ -104,29 +99,31 @@ public class EmpresasDAO {
     }
     
     public static Mensaje editarEmpresa(int idEmpresas, String nombre, String nombreComercial,
-            String representanteLegal, String email, String telefono, String paginaWeb,
-             int estatus, int idDireccion) {
+                                        String representanteLegal, String telefono, String paginaWeb,
+                                        String estatus,String direccion,String codigoPostal,String ciudad) {
         Empresas empresa = new Empresas();
         empresa.setIdEmpresa(idEmpresas);
         empresa.setNombre(nombre);
         empresa.setNombreComercial(nombreComercial);
         empresa.setRepresentanteLegal(representanteLegal);
-        empresa.setEmail(email);
         empresa.setTelefono(telefono);
+        empresa.setDireccion(direccion);
+        empresa.setCodigoPostal(codigoPostal);
+        empresa.setCiudad(ciudad);
         empresa.setPaginaWeb(paginaWeb);
         empresa.setEstatus(estatus);
-        empresa.setIdDireccion(idDireccion);
+        
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
         mensaje.setError(true);
         if (conexionBD != null) {
             try {
-                int numFilasAfectadas = conexionBD.update("empresa.editarEmpresas", empresa);
+                int numFilasAfectadas = conexionBD.update("empresa.editarEmpresa", empresa);
                 conexionBD.commit();
                 if (numFilasAfectadas > 0) {
                     mensaje.setError(false);
-                    mensaje.setMensaje("Empresas editadas");
+                    mensaje.setMensaje("Empresa editada");
                 } else {
                     mensaje.setMensaje("Hubo un error al editar las empresas, por favor inténtalo más tarde");
                 }

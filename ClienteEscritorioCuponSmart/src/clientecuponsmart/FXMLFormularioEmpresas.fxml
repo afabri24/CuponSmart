@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -13,19 +14,29 @@
       <TextField fx:id="tfNombreComercial" layoutX="369.0" layoutY="116.0" promptText="Nombre Comercial" />
       <TextField fx:id="tfRepresentante" layoutX="34.0" layoutY="200.0" promptText="Nombre del Representante Legal" />
       <TextField fx:id="tfEmail" layoutX="369.0" layoutY="200.0" promptText="Correo Electrónico" />
-      <TextField fx:id="tfDireccion" layoutX="654.0" layoutY="200.0" promptText="Dirección" />
-      <TextField fx:id="tfCodigoPostal" layoutX="34.0" layoutY="284.0" promptText="Código Postal" />
-      <TextField fx:id="tfCiudad" layoutX="369.0" layoutY="284.0" promptText="Ciudad" />
-      <TextField fx:id="tfTelefono" layoutX="654.0" layoutY="284.0" promptText="Teléfono" />
-      <TextField fx:id="tfWeb" layoutX="34.0" layoutY="368.0" promptText="Página Web (opcional)" />
-      <TextField fx:id="tfRFC" layoutX="369.0" layoutY="368.0" promptText="RFC" />
-      <Button layoutX="756.0" layoutY="551.0" mnemonicParsing="false" onAction="" prefHeight="48.0" prefWidth="108.0" text="Finalizar" />
+      <TextField fx:id="tfTelefono" layoutX="630.0" layoutY="284.0" promptText="Teléfono" />
+      <TextField fx:id="tfWeb" layoutX="34.0" layoutY="284.0" promptText="Página Web (opcional)" />
+      <TextField fx:id="tfRFC" layoutX="372.0" layoutY="284.0" promptText="RFC" />
+      <Button layoutX="756.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnGuardarEmpresa" prefHeight="48.0" prefWidth="108.0" text="Finalizar" />
       <Label layoutX="34.0" layoutY="26.0" text="Formulario empresas:" />
-      <RadioButton layoutX="638.0" layoutY="373.0" mnemonicParsing="false" text="Activo" />
-      <RadioButton layoutX="762.0" layoutY="373.0" mnemonicParsing="false" text="Inactivo" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="363.0" layoutY="449.0" mnemonicParsing="false" text="Cargar Logo" />
-      <Button layoutX="363.0" layoutY="520.0" mnemonicParsing="false" text="Guardar imagen" />
+      <RadioButton fx:id="rbActiva" layoutX="596.0" layoutY="454.0" mnemonicParsing="false" text="Activa">
+         <toggleGroup>
+            <ToggleGroup fx:id="tgEstatus" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbInactiva" layoutX="592.0" layoutY="525.0" mnemonicParsing="false" text="Inactiva" toggleGroup="$tgEstatus" />
+      <ImageView fx:id="imgLogo" fitHeight="219.0" fitWidth="232.0" layoutX="55.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnCL" disable="true" layoutX="363.0" layoutY="449.0" mnemonicParsing="false" onAction="#btnCargarLogo" text="Cargar Logo" />
+      <Button fx:id="btnGL" disable="true" layoutX="363.0" layoutY="520.0" mnemonicParsing="false" onAction="#btnGuardarLogo" text="Guardar Logo" />
+      <Label fx:id="lbErrorEmpresa" layoutX="34.0" layoutY="147.0" textFill="RED" />
+      <Label fx:id="lbErrorComercial" layoutX="369.0" layoutY="147.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Label fx:id="lbInformacionDireccion" layoutX="623.0" layoutY="165.0" prefHeight="101.0" prefWidth="201.0" />
+      <Label fx:id="lbErrorEmail" layoutX="369.0" layoutY="231.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Label fx:id="lbErrorNombreRepresentante" layoutX="34.0" layoutY="231.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Label layoutX="654.0" layoutY="315.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Label fx:id="lbErrorRFC" layoutX="369.0" layoutY="399.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Label fx:id="lbErrorTelefono" layoutX="631.0" layoutY="315.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
+      <Button layoutX="654.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnAbrirDireccion" text="Agregar direccion" />
+      <Label layoutX="689.0" layoutY="168.0" prefHeight="21.0" prefWidth="69.0" textFill="RED" />
       
     </children>
 </AnchorPane>

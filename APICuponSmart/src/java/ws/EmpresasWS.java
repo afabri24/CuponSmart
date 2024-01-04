@@ -12,8 +12,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -27,10 +29,12 @@ import modelo.pojo.Mensaje;
  */
 @Path("empresas")
 public class EmpresasWS {
+    @Context
     private UriInfo context;
 
     public EmpresasWS() {
     }
+    
     @GET
     @Path("obtener")
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +45,20 @@ public class EmpresasWS {
         }
         return empresas;
     }
+    
+    
+    @GET
+    @Path("obtenerEmpresaId/{idEmpresa}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Empresas obtenerEmpresaPorId(@PathParam("idEmpresa") Integer idEmpresa){
+        Empresas empresa= null;
+        if(idEmpresa!=null&&idEmpresa>0){
+            empresa=EmpresasDAO.obtenerEmpresaPorId(idEmpresa);
+        }else{
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return empresa;
+    }
 
     @POST
     @Path("registrar")
@@ -50,14 +68,16 @@ public class EmpresasWS {
                                     @FormParam("representanteLegal") String representanteLegal,
                                     @FormParam("email") String email,
                                     @FormParam("telefono") String telefono,
+                                    @FormParam("direccion") String direccion,
+                                    @FormParam("codigoPostal") String codigoPostal,
+                                    @FormParam("ciudad") String ciudad,
                                     @FormParam("paginaWeb") String paginaWeb,
                                     @FormParam("RFC") String RFC,
-                                    @FormParam("estatus") int estatus,
-                                    @FormParam("idDireccion") int idDireccion) {
+                                    @FormParam("estatus") String estatus) {
 
         Mensaje mensaje;
         if (nombre != null && !nombre.isEmpty()) {
-            mensaje = EmpresasDAO.registrarEmpresa(nombre,nombreComercial,representanteLegal,email,telefono,paginaWeb,RFC,estatus,idDireccion);
+            mensaje = EmpresasDAO.registrarEmpresa(nombre,nombreComercial,representanteLegal,email,telefono,paginaWeb,RFC,estatus,direccion,codigoPostal,ciudad);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -71,15 +91,16 @@ public class EmpresasWS {
                                  @FormParam("nombre") String nombre,
                                  @FormParam("nombreComercial") String nombreComercial,
                                  @FormParam("representanteLegal") String representanteLegal,
-                                 @FormParam("email") String email,
+                                 @FormParam("direccion") String direccion,
+                                 @FormParam("codigoPostal") String codigoPostal,
+                                 @FormParam("ciudad") String ciudad,
                                  @FormParam("telefono") String telefono,
                                  @FormParam("paginaWeb") String paginaWeb,
-                                 @FormParam("estatus") int estatus,
-                                 @FormParam("idDireccion") int idDireccion) {
+                                 @FormParam("estatus") String estatus) {
 
         Mensaje mensaje;
         if (idEmpresa > 0) {
-            mensaje = EmpresasDAO.editarEmpresa(idEmpresa,nombre,nombreComercial,representanteLegal,email,telefono,paginaWeb,estatus,idDireccion);
+            mensaje = EmpresasDAO.editarEmpresa(idEmpresa,nombre,nombreComercial,representanteLegal,telefono,paginaWeb,estatus,direccion,codigoPostal,ciudad);
         } else {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -98,6 +119,33 @@ public class EmpresasWS {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return mensaje;
+    }
+
+    @PUT
+    @Path("subirLogo/{idEmpresa}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Mensaje subirLogo(@PathParam("idEmpresa")Integer idEmpresa, byte[] foto){
+        Mensaje msj=null;
+        if(idEmpresa!=null){
+            msj=EmpresasDAO.guardarLogoEmpresa(idEmpresa, foto);
+        }else{
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return msj;
+    }
+    
+    
+    @GET
+    @Path("obtenerLogo/{idEmpresa}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Empresas obtenerLogo(@PathParam("idEmpresa") Integer idEmpresa){
+        Empresas empresa= null;
+        if(idEmpresa!=null&&idEmpresa>0){
+            empresa=EmpresasDAO.obtenerLogoEmpresa(idEmpresa);
+        }else{
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return empresa;
     }
 
 }

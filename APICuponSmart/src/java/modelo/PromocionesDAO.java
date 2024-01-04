@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import modelo.pojo.Mensaje;
 import modelo.pojo.Promociones;
+import modelo.pojo.PromocionesSucursales;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -53,22 +54,22 @@ public class PromocionesDAO {
     }
 
     public static Mensaje registrarPromocion(String nombre, String descripcion, String fechaInicio,
-            String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria,
-            Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
+            String fechaTermino, String restricciones, String tipo, float valor, String categoria,
+            Integer cuponesMaximos, String codigo, String estatus, int idEmpresa) {
         Promociones promocion = new Promociones();
         promocion.setNombre(nombre);
         promocion.setDescripcion(descripcion);
         promocion.setFechaInicio(fechaInicio);
         promocion.setFechaTermino(fechaTermino);
         promocion.setRestricciones(restricciones);
-        promocion.setTipoPromocion(tipoPromocion);
-        promocion.setValorPromocion(valorPromocion);
+        promocion.setTipo(tipo);
+        promocion.setValor(valor);
         promocion.setCategoria(categoria);
         promocion.setCuponesMaximos(cuponesMaximos);
-        promocion.setCodigoPromocion(codigoPromocion);
+        promocion.setCodigo(codigo);
         promocion.setEstatus(estatus);
         promocion.setIdEmpresa(idEmpresa);
-        promocion.setIdSucursal(idSucursal);
+        
 
         Mensaje mensaje = new Mensaje();
         mensaje.setError(true);
@@ -95,9 +96,8 @@ public class PromocionesDAO {
     }
 
     public static Mensaje editarPromocion(int idPromocion, String nombre, String descripcion,
-        String fechaInicio, String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion,
-        String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa,
-        int idSucursal) {
+        String fechaInicio, String fechaTermino, String restricciones, String tipo, float valor,
+        String categoria, Integer cuponesMaximos, String estatus) {
 
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("idPromocion", idPromocion);
@@ -106,14 +106,11 @@ public class PromocionesDAO {
         parametros.put("fechaInicio", fechaInicio);
         parametros.put("fechaTermino", fechaTermino);
         parametros.put("restricciones", restricciones);
-        parametros.put("tipoPromocion", tipoPromocion);
-        parametros.put("valorPromocion", valorPromocion);
+        parametros.put("tipo", tipo);
+        parametros.put("valor", valor);
         parametros.put("categoria", categoria);
         parametros.put("cuponesMaximos", cuponesMaximos);
-        parametros.put("codigoPromocion", codigoPromocion);
         parametros.put("estatus", estatus);
-        parametros.put("idEmpresa", idEmpresa);
-        parametros.put("idSucursal", idSucursal);
 
         Mensaje mensaje = new Mensaje();
         SqlSession conexionBD = MyBatisUtil.getSession();
@@ -175,7 +172,7 @@ public class PromocionesDAO {
                 parametros.put("idPromocion", idPromocion);
                 parametros.put("imagen", imagen);
 
-                int filasAfectadas = conexionBD.update("promocion.subirImagenPromocion", parametros);
+                int filasAfectadas = conexionBD.update("promocion.guardarImagenPromocion", parametros);
                 conexionBD.commit();
 
                 if (filasAfectadas > 0) {
@@ -208,5 +205,48 @@ public class PromocionesDAO {
             }
         }
         return promocion;
+    }
+    
+    public static Mensaje registrarPromocionesSucursales(int idPromocion,int idSucursal ) {
+        PromocionesSucursales promocionsucursal = new PromocionesSucursales();
+        promocionsucursal.setIdPromocion(idPromocion);
+        promocionsucursal.setIdSucursal(idSucursal);
+        Mensaje mensaje = new Mensaje();
+        mensaje.setError(true);
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if (conexionBD != null) {
+            try {
+                int numFilasAfectadas = conexionBD.insert("insertarPromocionSucursal", promocionsucursal);
+                conexionBD.commit();
+                if (numFilasAfectadas > 0) {
+                    mensaje.setError(false);
+                    mensaje.setMensaje("PromociónSucursal registrada");
+                } else {
+                    mensaje.setMensaje("Hubo un error al registrar la PromociónSucursal, por favor inténtalo más tarde");
+                }
+            } catch (Exception e) {
+                mensaje.setMensaje("Error: " + e);
+            } finally {
+                conexionBD.close();
+            }
+        } else {
+            mensaje.setMensaje("Hubo un error al conectarse a la base de datos, por favor inténtalo más tarde");
+        }
+        return mensaje;
+    }
+    
+    public static List<Promociones> obtenerPromocionesPorSucursal(int idSucursal) {
+        List<Promociones> promociones = null;
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if (conexionBD != null) {
+            try {
+                promociones = conexionBD.selectList("promocion.obtenerPromocionesSucursales", idSucursal);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return promociones;
     }
 }

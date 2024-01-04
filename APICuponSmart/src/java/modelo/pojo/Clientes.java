@@ -17,24 +17,24 @@ public class Clientes {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String telefono;
+    private String direccion;
     private String correoElectronico;
     private String fechaNacimiento;
     private String contrasenia;
-    private int idDireccion;
 
-    public Clientes() {
-    }
-
-    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, String fechaNacimiento, String contrasenia, int idDireccion) {
+    public Clientes(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String direccion, String correoElectronico, String fechaNacimiento, String contrasenia) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.telefono = telefono;
+        this.direccion = direccion;
         this.correoElectronico = correoElectronico;
         this.fechaNacimiento = fechaNacimiento;
         this.contrasenia = contrasenia;
-        this.idDireccion = idDireccion;
+    }
+
+    public Clientes() {
     }
 
     public int getIdCliente() {
@@ -77,6 +77,14 @@ public class Clientes {
         this.telefono = telefono;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getCorreoElectronico() {
         return correoElectronico;
     }
@@ -101,15 +109,5 @@ public class Clientes {
         this.contrasenia = contrasenia;
     }
 
-    public int getIdDireccion() {
-        return idDireccion;
-    }
-
-    public void setIdDireccion(int idDireccion) {
-        this.idDireccion = idDireccion;
-    }
-
-   
-    
     
 }

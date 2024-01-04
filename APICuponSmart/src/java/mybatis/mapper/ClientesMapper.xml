@@ -5,36 +5,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cliente">
+
     <select id="mostrarClientePorId" resultType="modelo.pojo.Clientes" parameterType="int">
-        SELECT * 
-        FROM clientes 
-        WHERE idCliente=#{idCliente}
+        SELECT
+            idCliente,
+            nombre,
+            apellidoPaterno,
+            apellidoMaterno,
+            telefono,
+            direccion,
+            correoElectronico,
+            fechaNacimiento,
+            contrasenia,
+        FROM clientes
+        WHERE idCliente = #{idCliente}
     </select>
 
     <insert id="registrarCliente" parameterType="modelo.pojo.Clientes">
-        INSERT INTO clientes 
-        (nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaNacimiento, contrasenia, idDireccion) 
-        VALUES 
-        (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{telefono}, #{correoElectronico}, #{fechaNacimiento}, #{contrasenia}, #{idDireccion})
+        INSERT INTO clientes
+        (
+            nombre,
+            apellidoPaterno,
+            apellidoMaterno,
+            telefono,
+            direccion,
+            correoElectronico,
+            fechaNacimiento,
+            contrasenia,
+        )
+        VALUES
+        (
+            #{nombre},
+            #{apellidoPaterno},
+            #{apellidoMaterno},
+            #{telefono},
+            #{direccion},
+            #{correoElectronico},
+            #{fechaNacimiento},
+            #{contrasenia},
+        )
     </insert>
 
     <update id="editarCliente" parameterType="map">
-        UPDATE clientes SET 
-        nombre=#{nombre}, apellidoPaterno=#{apellidoPaterno}, apellidoMaterno=#{apellidoMaterno}, telefono=#{telefono}, 
-        correoElectronico=#{correoElectronico}, fechaNacimiento=#{fechaNacimiento}, contrasenia=#{contrasenia}, idDireccion=#{idDireccion}
-        WHERE idCliente=#{idCliente}
+        UPDATE clientes
+        SET
+            nombre = #{nombre},
+            apellidoPaterno = #{apellidoPaterno},
+            apellidoMaterno = #{apellidoMaterno},
+            telefono = #{telefono},
+            fechaNacimiento = #{fechaNacimiento},
+            contrasenia = #{contrasenia},
+        WHERE idCliente = #{idCliente}
     </update>
 
     <delete id="eliminarCliente" parameterType="int">
         DELETE FROM clientes
-        WHERE idCliente=#{idCliente}
+        WHERE idCliente = #{idCliente}
     </delete>
 
-    <select id="obtenerDireccionCliente" parameterType="int" resultType="modelo.pojo.Clientes">
-        SELECT idCliente, nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaNacimiento, contrasenia, 
-        idDireccion, Calle, Numero, codigoPostal, ciudad, colonia
-        FROM clientes 
-        INNER JOIN direcciones ON clientes.idDireccion = direcciones.idDireccion
-        WHERE idCliente=#{idCliente}
-    </select>
+
 </mapper>
+

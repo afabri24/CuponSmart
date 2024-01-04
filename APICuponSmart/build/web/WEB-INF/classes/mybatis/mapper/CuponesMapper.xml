@@ -5,39 +5,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cupon">
-    <select id="mostrarCuponPorId" resultType="modelo.pojo.Cupones" parameterType="int">
-        SELECT idCupon,idPromocion 
-        FROM cupones 
-        WHERE idCupon=#{idCupon}
-    </select>
-    
-    <select id="mostrarCuponPorPromocion" resultType="modelo.pojo.Cupones" parameterType="int">
-        SELECT * 
-        FROM cupones 
-        WHERE idCupon=#{idCupon}
-    </select>
 
-    <insert id="registrarCupon" parameterType="modelo.pojo.Cupones">
-        INSERT INTO cupones 
-        (idPromocion, numeroCuponesDisponibles) 
-        VALUES 
-        (#{idPromocion}, #{numeroCuponesDisponibles})
-    </insert>
+   <select id="mostrarCuponPorId" resultType="modelo.pojo.Cupones" parameterType="int">
+       SELECT idCupon, idPromocion, codigo, estatus, idCliente 
+       FROM cupones 
+       WHERE idCupon = #{idCupon}
+   </select>
 
-    <delete id="eliminarCupon" parameterType="int">
-        DELETE FROM cupones
-        WHERE idCupon=#{idCupon}
-    </delete>
+   <select id="mostrarCuponPorPromocion" resultType="modelo.pojo.Cupones" parameterType="int">
+       SELECT idCupon, idPromocion, codigo, estatus, idCliente 
+       FROM cupones 
+       WHERE idPromocion = #{idPromocion}
+   </select>
 
-    <select id="obtenerCuponesPorPromocion" resultType="modelo.pojo.Cupones" parameterType="int">
-        SELECT * 
-        FROM cupones 
-        WHERE idPromocion=#{idPromocion}
-    </select>
+   <insert id="registrarCupon" parameterType="modelo.pojo.Cupones">
+       INSERT INTO cupones  
+       (idPromocion, codigo, estatus, idCliente) 
+       VALUES 
+       (#{idPromocion}, #{codigo}, #{estatus},#(idCliente)
+   </insert>
 
-    <update id="actualizarCuponesDisponibles" parameterType="map">
-        UPDATE cupones 
-        SET numeroCuponesDisponibles=#{numeroCuponesDisponibles} 
-        WHERE idCupon=#{idCupon}
-    </update>
+    <update id="editarCupon" parameterType="modelo.pojo.Cupones">
+       UPDATE cupones 
+       SET estatus=#{estatus} 
+       WHERE idCupon=#{idCupon}
+   </update>
+
+   <delete id="eliminarCupon" parameterType="int">
+       DELETE FROM cupones 
+       WHERE idCupon = #{idCupon}
+   </delete>
+
+   <select id="obtenerCuponesPorCodigo" resultType="modelo.pojo.Cupones" parameterType="int">
+       SELECT idCupon, idPromocion, codigo, estatus, idCliente 
+       FROM cupones 
+       WHERE codigo = #{codigo}
+   </select>
+
 </mapper>
+

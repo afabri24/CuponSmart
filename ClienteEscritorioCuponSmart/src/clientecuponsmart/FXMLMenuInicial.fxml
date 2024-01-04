@@ -17,5 +17,6 @@
             <Label fx:id="lbUsuario" layoutX="465.0" layoutY="21.0" text="Usuario:" />
          </children>
       </Pane>
+      <Button fx:id="btnUsuarios" disable="true" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnAbirUsuarios" prefHeight="31.0" prefWidth="135.0" text="Usuarios" />
    </children>
 </AnchorPane>

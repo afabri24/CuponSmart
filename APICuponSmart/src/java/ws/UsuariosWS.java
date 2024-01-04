@@ -57,14 +57,14 @@ public class UsuariosWS {
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje editarPaciente(@FormParam("idUsuario")Integer idUsuario,
                                   @FormParam("nombre")String nombre,
-                                     @FormParam("apellidoPaterno")String apellidoPaterno,
-                                     @FormParam("apellidoMaterno")String apellidoMaterno,
-                                     @FormParam("CURP")String CURP,
-                                     @FormParam("correoElectronico")String correoElectronico,
-                                     @FormParam("username") String username,
-                                     @FormParam("contrasenia")String contrasenia,
-                                     @FormParam("rol")int rol,
-                                     @FormParam("idEmpresa")Integer idEmpresa){
+                                    @FormParam("apellidoPaterno")String apellidoPaterno,
+                                    @FormParam("apellidoMaterno")String apellidoMaterno,
+                                    @FormParam("CURP")String CURP,
+                                    @FormParam("correoElectronico")String correoElectronico,
+                                    @FormParam("username") String username,
+                                    @FormParam("contrasenia")String contrasenia,
+                                    @FormParam("rol")int rol,
+                                    @FormParam("idEmpresa")Integer idEmpresa){
         Usuarios usuario = null;
         Mensaje mensaje=null;
          if(idUsuario != null){
