@@ -2,9 +2,7 @@
 package clientecuponsmart;
 
 import clientecuponsmart.interfaz.IRespuesta;
-import clientecuponsmart.modelo.dao.DireccionesDAO;
 import clientecuponsmart.modelo.dao.EmpresasDAO;
-import clientecuponsmart.modelo.pojo.Direcciones;
 import clientecuponsmart.modelo.pojo.Empresas;
 import clientecuponsmart.modelo.pojo.Mensaje;
 import clientecuponsmart.utils.Utilidades;
@@ -45,14 +43,8 @@ import javax.imageio.ImageIO;
  * @author afabri24
  */
 public class FXMLFormularioEmpresasController implements Initializable {
-    
-    
     private Empresas empresaModificar;
-    
-    private int estado;
-    
-    private Direcciones direccion=null;
-    
+    private String estado;
     private IRespuesta observador;
     
     private int bandEditar=0;
@@ -81,7 +73,6 @@ public class FXMLFormularioEmpresasController implements Initializable {
     private Label lbErrorEmpresa;
     @FXML
     private Label lbErrorComercial;
-    @FXML
     private Label lbInformacionDireccion;
     @FXML
     private Label lbErrorEmail;
@@ -101,6 +92,22 @@ public class FXMLFormularioEmpresasController implements Initializable {
     private Button btnCL;
     @FXML
     private Button btnGL;
+    @FXML
+    private TextField tfCalle;
+    @FXML
+    private TextField tfNumero;
+    @FXML
+    private TextField tfCodigoPostal;
+    @FXML
+    private TextField tfCiudad;
+    @FXML
+    private Label lbErrorCalle;
+    @FXML
+    private Label lbErrorNumero;
+    @FXML
+    private Label lbErrorCodigoPostal;
+    @FXML
+    private Label lbErrorCiudad;
 
     /**
      * Initializes the controller class.
@@ -111,9 +118,9 @@ public class FXMLFormularioEmpresasController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                if(rbActiva.isSelected()){
-                   estado=1;
+                   estado="activo";
                }else{
-                   estado=0;
+                   estado="inactivo";
                }
             }
             
@@ -121,31 +128,6 @@ public class FXMLFormularioEmpresasController implements Initializable {
     }    
 
 
-    @FXML
-    private void btnAbrirDireccion(ActionEvent event) {
-        irFormularioDireccion(direccion);
-    }
-    
-    
-    public void irFormularioDireccion(Direcciones direccion){
-        this.direccion=direccion;
-        try{
-               FXMLLoader loadVista = new FXMLLoader(getClass().getResource("FXMLFormularioDirecciones.fxml"));
-               Parent vista = loadVista.load();
-
-               FXMLFormularioDireccionesController controller=loadVista.getController();
-               controller.inicializarInformacionDireccion(direccion);
-                         
-               Scene escenaAdmin= new Scene(vista);
-               Stage escenarioAdmin=new Stage();
-               escenarioAdmin.setScene(escenaAdmin);
-               escenarioAdmin.setTitle("Direcciones");
-               escenarioAdmin.initModality(Modality.APPLICATION_MODAL);
-               escenarioAdmin.showAndWait();
-           }catch(IOException e){
-               e.printStackTrace();
-           }
-    }
     
     public void inicializarInformacionEmpresa(Empresas empresaModificar, IRespuesta observador){
         this.empresaModificar=empresaModificar;
@@ -157,22 +139,22 @@ public class FXMLFormularioEmpresasController implements Initializable {
             tfRepresentante.setText(empresaModificar.getRepresentanteLegal());
             tfEmail.setText(empresaModificar.getEmail());
             tfTelefono.setText(empresaModificar.getTelefono());
+            tfCalle.setText(empresaModificar.getDireccion());
+            tfCodigoPostal.setText(empresaModificar.getCodigoPostal());
+            tfCiudad.setText(empresaModificar.getCiudad());
             tfWeb.setText(empresaModificar.getPaginaWeb());
             tfRFC.setText(empresaModificar.getRFC());
+            
+            tfEmail.setDisable(true);
             btnCL.setDisable(false);
             btnGL.setDisable(false);
             
-            obtenerLogoServicio();
+            obtenerLogoServicio();    
             
-            obtenerDireccion();
-            
-            lbInformacionDireccion.setText(direccion.getCalle()+" "+direccion.getNumero()+", "+direccion.getColonia()+"\n"+direccion.getCiudad()+", "+direccion.getCodigoPostal());
-            
-            
-            if(1==empresaModificar.getEstatus()){
+            if("activo".equals(empresaModificar.getEstatus())){
                 rbActiva.setSelected(true);
             }
-            if(0==empresaModificar.getEstatus()){
+            if("inactivo".equals(empresaModificar.getEstatus())){
                 rbInactiva.setSelected(true);
             }
         }
@@ -207,21 +189,24 @@ public class FXMLFormularioEmpresasController implements Initializable {
     @FXML
     private void btnGuardarEmpresa(ActionEvent event) {
         Empresas empresaNueva=new Empresas();
-        obtenerDireccion();
+        
         if(comprobarVacios()){
             empresaNueva.setNombre(tfNombre.getText());
             empresaNueva.setNombreComercial(tfNombreComercial.getText());
             empresaNueva.setRepresentanteLegal(tfRepresentante.getText());
             empresaNueva.setEmail(tfEmail.getText());
             empresaNueva.setTelefono(tfTelefono.getText());
+            empresaNueva.setDireccion(tfCalle.getText());
+            empresaNueva.setCodigoPostal(tfCodigoPostal.getText());
+            empresaNueva.setCiudad(tfCiudad.getText());
             empresaNueva.setPaginaWeb(tfWeb.getText());
             empresaNueva.setRFC(tfRFC.getText());
-            empresaNueva.setIdDireccion(direccion.getIdDireccion());
+
             if(rbActiva.isSelected()){
-                empresaNueva.setEstatus(1);
+                empresaNueva.setEstatus("activo");
             }
             if(rbInactiva.isSelected()){
-                empresaNueva.setEstatus(0);
+                empresaNueva.setEstatus("inactivo");
             }
             if(bandEditar==0){
                 guardarEmpresa(empresaNueva);
@@ -239,6 +224,9 @@ public class FXMLFormularioEmpresasController implements Initializable {
         String nombreComercial=tfNombreComercial.getText();
         String representanteLegal=tfRepresentante.getText();
         String email=tfEmail.getText();
+        String direccion=tfCalle.getText();
+        String codigoPostal=tfCodigoPostal.getText();
+        String ciudad=tfCiudad.getText();
         String telefono=tfTelefono.getText();
         String paginaWeb=tfWeb.getText();
         String RFC=tfRFC.getText();
@@ -264,6 +252,18 @@ public class FXMLFormularioEmpresasController implements Initializable {
             lbErrorTelefono.setText("Teléfono requerido");
             return false;
         }
+        if(direccion.isEmpty()){
+            lbErrorCalle.setText("Direccion requerida");
+            return false;
+        }
+        if(codigoPostal.isEmpty()){
+            lbErrorCodigoPostal.setText("Codigo Postal requerido");
+            return false;
+        }
+        if(ciudad.isEmpty()){
+            lbErrorCiudad.setText("Ciudad requerido");
+            return false;
+        }
         if(paginaWeb.isEmpty()){
             lbInformacionDireccion.setText("Página web requerida");
             return false;
@@ -272,18 +272,10 @@ public class FXMLFormularioEmpresasController implements Initializable {
             lbErrorRFC.setText("RFC requerido");
             return false;
         }
-        if(0==empresaModificar.getIdDireccion()){
-            lbInformacionDireccion.setText("Direccion requerida");
-            return false;
-        }
+        
         return true;
     }
       
-    
-    public void obtenerDireccion(){
-        Direcciones direccion=DireccionesDAO.obtenerDireccionPorId(empresaModificar.getIdDireccion());
-        this.direccion=direccion;
-    }
     
     private void mostrarLogo(File img){
         try{

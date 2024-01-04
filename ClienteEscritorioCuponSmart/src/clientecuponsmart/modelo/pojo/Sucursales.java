@@ -7,7 +7,7 @@ package clientecuponsmart.modelo.pojo;
 
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Sucursales {
     private int idSucursal;
@@ -16,18 +16,24 @@ public class Sucursales {
     private float latitud;
     private float longitud;
     private String nombreEncargado;
+    private String direccion;
+    private String codigoPostal;
+    private String colonia;
+    private String ciudad;
     private int idEmpresa;
-    private int idDireccion;
 
-    public Sucursales(int idSucursal, String nombre, String telefono, float latitud, float longitud, String nombreEncargado, int idEmpresa, int idDireccion) {
+    public Sucursales(int idSucursal, String nombre, String telefono, float latitud, float longitud, String nombreEncargado, String direccion, String codigoPostal, String colonia, String ciudad, int idEmpresa) {
         this.idSucursal = idSucursal;
         this.nombre = nombre;
         this.telefono = telefono;
         this.latitud = latitud;
         this.longitud = longitud;
         this.nombreEncargado = nombreEncargado;
+        this.direccion = direccion;
+        this.codigoPostal = codigoPostal;
+        this.colonia = colonia;
+        this.ciudad = ciudad;
         this.idEmpresa = idEmpresa;
-        this.idDireccion = idDireccion;
     }
 
     public Sucursales() {
@@ -81,6 +87,38 @@ public class Sucursales {
         this.nombreEncargado = nombreEncargado;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
     public int getIdEmpresa() {
         return idEmpresa;
     }
@@ -89,13 +127,6 @@ public class Sucursales {
         this.idEmpresa = idEmpresa;
     }
 
-    public int getIdDireccion() {
-        return idDireccion;
-    }
-
-    public void setIdDireccion(int idDireccion) {
-        this.idDireccion = idDireccion;
-    }
     
     
 }

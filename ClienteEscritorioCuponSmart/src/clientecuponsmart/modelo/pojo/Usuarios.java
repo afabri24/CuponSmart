@@ -18,10 +18,10 @@ public class Usuarios {
     private String correoElectronico;
     private String username;
     private String contrasenia;
-    private int rol;
+    private String rol;
     private Integer idEmpresa;
 
-    public Usuarios(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, int rol, Integer idEmpresa) {
+    public Usuarios(int idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, String rol, Integer idEmpresa) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -101,11 +101,11 @@ public class Usuarios {
         this.contrasenia = contrasenia;
     }
 
-    public int getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
@@ -117,5 +117,6 @@ public class Usuarios {
         this.idEmpresa = idEmpresa;
     }
 
+    
     
 }

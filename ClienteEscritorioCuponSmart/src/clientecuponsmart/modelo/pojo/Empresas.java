@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package clientecuponsmart.modelo.pojo;
 
-/**
- *
- * @author afabri24
- */
+
 public class Empresas {
     private int idEmpresa;
     private String nombre;
@@ -16,25 +9,29 @@ public class Empresas {
     private byte[] logo;
     private String representanteLegal;
     private String email;
+    private String direccion;
+    private String codigoPostal;
+    private String ciudad;
     private String telefono;
     private String paginaWeb;
     private String RFC;
-    private int estatus;
-    private int idDireccion;
+    private String estatus;
     private String logoBase64;
 
-    public Empresas(int idEmpresa, String nombre, String nombreComercial, byte[] logo, String representanteLegal, String email, String telefono, String paginaWeb, String RFC, int estatus, int idDireccion, String logoBase64) {
+    public Empresas(int idEmpresa, String nombre, String nombreComercial, byte[] logo, String representanteLegal, String email, String direccion, String codigoPostal, String ciudad, String telefono, String paginaWeb, String RFC, String estatus, String logoBase64) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
         this.nombreComercial = nombreComercial;
         this.logo = logo;
         this.representanteLegal = representanteLegal;
         this.email = email;
+        this.direccion = direccion;
+        this.codigoPostal = codigoPostal;
+        this.ciudad = ciudad;
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
         this.RFC = RFC;
         this.estatus = estatus;
-        this.idDireccion = idDireccion;
         this.logoBase64 = logoBase64;
     }
 
@@ -89,6 +86,30 @@ public class Empresas {
         this.email = email;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -113,20 +134,12 @@ public class Empresas {
         this.RFC = RFC;
     }
 
-    public int getEstatus() {
+    public String getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(String estatus) {
         this.estatus = estatus;
-    }
-
-    public int getIdDireccion() {
-        return idDireccion;
-    }
-
-    public void setIdDireccion(int idDireccion) {
-        this.idDireccion = idDireccion;
     }
 
     public String getLogoBase64() {
@@ -137,7 +150,6 @@ public class Empresas {
         this.logoBase64 = logoBase64;
     }
 
-    
     
     
 }

@@ -48,9 +48,10 @@ public class EmpresasDAO {
         Mensaje msj=new Mensaje();
         String url = Constantes.URL_WS+"empresas/registrar";
         String parametros;
-        parametros = String.format("nombre=%s&nombreComercial=%s&representanteLegal=%s&email=%s&telefono=%s&paginaWeb=%s&RFC=%s&estatus=%d&idDireccion=%d",
-                empresaNueva.getNombre(),empresaNueva.getNombreComercial(),empresaNueva.getRepresentanteLegal(),empresaNueva.getEmail(),
-                empresaNueva.getTelefono(),empresaNueva.getPaginaWeb(),empresaNueva.getRFC(),empresaNueva.getEstatus(),empresaNueva.getIdDireccion());
+        parametros = String.format("nombre=%s&nombreComercial=%s&representanteLegal=%s&email=%s&direccion=%s&codigoPostal=%s&ciudad=%s&telefono=%s&paginaWeb=%s&RFC=%s&estatus=%s",
+        empresaNueva.getNombre(), empresaNueva.getNombreComercial(), empresaNueva.getRepresentanteLegal(), empresaNueva.getEmail(),
+        empresaNueva.getDireccion(), empresaNueva.getCodigoPostal(), empresaNueva.getCiudad(), empresaNueva.getTelefono(), empresaNueva.getPaginaWeb(),
+        empresaNueva.getRFC(), empresaNueva.getEstatus());
         RespuestaHTTP respuesta=ConexionWS.peticionPOST(url, parametros);
         if(respuesta.getCodigoRespuesta()== HttpURLConnection.HTTP_OK){
             Gson gson= new Gson();
@@ -66,9 +67,10 @@ public class EmpresasDAO {
         Mensaje msj=new Mensaje();
         String url = Constantes.URL_WS+"empresas/editar";
         String parametros;
-        parametros = String.format("idEmpresa=%d&nombre=%s&nombreComercial=%s&representanteLegal=%s&email=%s&telefono=%s&paginaWeb=%s&RFC=%s&estatus=%d&idDireccion=%d",
-                empresaEdicion.getIdEmpresa(),empresaEdicion.getNombre(),empresaEdicion.getNombreComercial(),empresaEdicion.getRepresentanteLegal(),empresaEdicion.getEmail(),
-                empresaEdicion.getTelefono(),empresaEdicion.getPaginaWeb(),empresaEdicion.getRFC(),empresaEdicion.getEstatus(),empresaEdicion.getIdDireccion());
+        parametros = String.format("idEmpresa=%d&nombre=%s&nombreComercial=%s&representanteLegal=%s&direccion=%s&codigoPostal=%s&ciudad=%s&telefono=%s&paginaWeb=%s&RFC=%s&estatus=%s",
+        empresaEdicion.getIdEmpresa(), empresaEdicion.getNombre(), empresaEdicion.getNombreComercial(), empresaEdicion.getRepresentanteLegal(),
+        empresaEdicion.getDireccion(), empresaEdicion.getCodigoPostal(), empresaEdicion.getCiudad(), empresaEdicion.getTelefono(), empresaEdicion.getPaginaWeb(),
+        empresaEdicion.getRFC(), empresaEdicion.getEstatus());
         RespuestaHTTP respuesta=ConexionWS.peticionPUT(url, parametros);
         if(respuesta.getCodigoRespuesta()== HttpURLConnection.HTTP_OK){
             Gson gson= new Gson();

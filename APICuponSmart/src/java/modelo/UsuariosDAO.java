@@ -17,7 +17,7 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class UsuariosDAO {
 
-    public static Mensaje registrarUsuario(String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, int rol, Integer idEmpresa) {
+    public static Mensaje registrarUsuario(String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, String rol, Integer idEmpresa) {
         Usuarios usuario = new Usuarios();
         usuario.setNombre(nombre);
         usuario.setApellidoPaterno(apellidoPaterno);
@@ -58,7 +58,7 @@ public class UsuariosDAO {
         return mensaje;
 
     }
-    public static Mensaje editarUsuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, int rol, Integer idEmpresa) {
+    public static Mensaje editarUsuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String contrasenia, String rol, Integer idEmpresa) {
         Usuarios usuario = new Usuarios();
         HashMap<String,Object> parametros = new HashMap<>();
         parametros.put("idUsuario", idUsuario);

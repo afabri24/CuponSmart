@@ -28,6 +28,8 @@ public class FXMLMenuInicialController implements Initializable {
     private Label lbUsuario;
     @FXML
     private Button btnCambiante;
+    @FXML
+    private Button btnUsuarios;
 
 
     @Override
@@ -60,10 +62,11 @@ public class FXMLMenuInicialController implements Initializable {
         }
         lbUsuario.setText("Nombre: "+usuarioSesion.getNombre()+" "+usuarioSesion.getApellidoPaterno()+" "+usuario.getApellidoMaterno());
         
-        if(usuarioSesion.getRol()==1){
-            lbEmpresa.setText("Cupon Smart, administrador General");
+        if("general".equals(usuarioSesion.getRol())){
+           lbEmpresa.setText("Cupon Smart, administrador General");
            System.out.println(usuarioSesion.getRol());
-            esAdminGeneral=true;
+           btnUsuarios.setDisable(false);
+           esAdminGeneral=true;
         }else{
             lbEmpresa.setText("empresaTODO, administrador empresa");
             btnCambiante.setText("Sucursales");
@@ -110,5 +113,9 @@ public class FXMLMenuInicialController implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void btnAbirUsuarios(ActionEvent event) {
     }
 }

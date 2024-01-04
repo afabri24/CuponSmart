@@ -7,7 +7,7 @@ package clientecuponsmart.modelo.pojo;
 
 /**
  *
- * @author afabri24
+ * @author ferna
  */
 public class Promociones {
     private int idPromocion;
@@ -17,16 +17,16 @@ public class Promociones {
     private String fechaInicio;
     private String fechaTermino;
     private String restricciones;
-    private int tipoPromocion;
-    private float valorPromocion;
+    private String tipo;
+    private float valor;
     private String categoria;
     private Integer cuponesMaximos;
-    private String codigoPromocion;
-    private int estatus;
+    private String codigo;
+    private String estatus;
     private int idEmpresa;
-    private int idSucursal;
+    private String imagenBase64;
 
-    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, int tipoPromocion, float valorPromocion, String categoria, Integer cuponesMaximos, String codigoPromocion, int estatus, int idEmpresa, int idSucursal) {
+    public Promociones(int idPromocion, String nombre, String descripcion, byte[] imagen, String fechaInicio, String fechaTermino, String restricciones, String tipo, float valor, String categoria, Integer cuponesMaximos, String codigo, String estatus, int idEmpresa, String imagenBase64) {
         this.idPromocion = idPromocion;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -34,14 +34,14 @@ public class Promociones {
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
         this.restricciones = restricciones;
-        this.tipoPromocion = tipoPromocion;
-        this.valorPromocion = valorPromocion;
+        this.tipo = tipo;
+        this.valor = valor;
         this.categoria = categoria;
         this.cuponesMaximos = cuponesMaximos;
-        this.codigoPromocion = codigoPromocion;
+        this.codigo = codigo;
         this.estatus = estatus;
         this.idEmpresa = idEmpresa;
-        this.idSucursal = idSucursal;
+        this.imagenBase64 = imagenBase64;
     }
 
     public Promociones() {
@@ -103,20 +103,20 @@ public class Promociones {
         this.restricciones = restricciones;
     }
 
-    public int getTipoPromocion() {
-        return tipoPromocion;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoPromocion(int tipoPromocion) {
-        this.tipoPromocion = tipoPromocion;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public float getValorPromocion() {
-        return valorPromocion;
+    public float getValor() {
+        return valor;
     }
 
-    public void setValorPromocion(float valorPromocion) {
-        this.valorPromocion = valorPromocion;
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     public String getCategoria() {
@@ -135,19 +135,19 @@ public class Promociones {
         this.cuponesMaximos = cuponesMaximos;
     }
 
-    public String getCodigoPromocion() {
-        return codigoPromocion;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodigoPromocion(String codigoPromocion) {
-        this.codigoPromocion = codigoPromocion;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public int getEstatus() {
+    public String getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(int estatus) {
+    public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
 
@@ -159,14 +159,14 @@ public class Promociones {
         this.idEmpresa = idEmpresa;
     }
 
-    public int getIdSucursal() {
-        return idSucursal;
+    public String getImagenBase64() {
+        return imagenBase64;
     }
 
-    public void setIdSucursal(int idSucursal) {
-        this.idSucursal = idSucursal;
+    public void setImagenBase64(String imagenBase64) {
+        this.imagenBase64 = imagenBase64;
     }
-    
-    
+
+   
     
 }
